@@ -9,7 +9,6 @@ import net.binarycreations.apod.R;
 import net.binarycreations.apod.domain.AstroItem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -18,10 +17,13 @@ import java.util.List;
  *
  * @author graham.
  */
-public class AstroPictureList extends AppCompatActivity {
+public class AstroPictureListActivity extends AppCompatActivity implements AstroPicturesView {
+
+    private AstroPicturePresenter mPresenter;
 
     private RecyclerView mAstroList;
-    private RecyclerView.Adapter mAdapter;
+    private AstroAdapter mAdapter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,7 +34,6 @@ public class AstroPictureList extends AppCompatActivity {
         mAstroList.setHasFixedSize(true);
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
 
-
         List<AstroItem> apods = new ArrayList<>();
         apods.add(new AstroItem("first", "second", "thrid", new Date()));
         apods.add(new AstroItem("first", "second", "thrid", new Date()));
@@ -41,7 +42,14 @@ public class AstroPictureList extends AppCompatActivity {
         apods.add(new AstroItem("first", "second", "thrid", new Date()));
         apods.add(new AstroItem("first", "second", "thrid", new Date()));
 
-        mAstroList.setAdapter(new AstroAdapter(apods));
+        mAdapter = new AstroAdapter();
+        mAstroList.setAdapter(mAdapter);
 
+        displayPictures(apods);
+    }
+
+    @Override
+    public void displayPictures(List<AstroItem> toShow) {
+        mAdapter.setItems(toShow);
     }
 }

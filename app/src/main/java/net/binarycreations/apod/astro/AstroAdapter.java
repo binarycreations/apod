@@ -13,10 +13,10 @@ import java.util.List;
  */
 public class AstroAdapter extends RecyclerView.Adapter<AstroAdapter.ViewHolder> {
 
-    private final List<AstroItem> mApods;
+    private List<AstroItem> mApods;
 
-    public AstroAdapter(List<AstroItem> items) {
-        mApods = items;
+    public AstroAdapter() {
+
     }
 
     @Override
@@ -34,7 +34,14 @@ public class AstroAdapter extends RecyclerView.Adapter<AstroAdapter.ViewHolder> 
 
     @Override
     public int getItemCount() {
-        return mApods.size();
+        return mApods == null ? 0 : mApods.size();
+    }
+
+    public void setItems(List<AstroItem> astroItems) {
+        if (mApods == null || !mApods.equals(astroItems)) {
+            mApods = astroItems;
+            notifyDataSetChanged();
+        }
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
