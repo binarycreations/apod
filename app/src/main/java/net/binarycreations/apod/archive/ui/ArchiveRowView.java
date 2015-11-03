@@ -1,4 +1,4 @@
-package net.binarycreations.apod.astro.view;
+package net.binarycreations.apod.archive.ui;
 
 import android.content.Context;
 import android.support.v4.content.ContextCompat;
@@ -13,13 +13,13 @@ import net.binarycreations.apod.R;
  *
  * @author graham.
  */
-public class AstroRowView extends RelativeLayout {
+public class ArchiveRowView extends RelativeLayout {
 
     private TextView mTitle;
     private TextView mDate;
     private ImageView mPicture;
 
-    public AstroRowView(Context context) {
+    public ArchiveRowView(Context context) {
         super(context);
         init();
     }

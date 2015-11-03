@@ -1,13 +1,13 @@
-package net.binarycreations.apod.astro;
+package net.binarycreations.apod.archive;
 
 /**
  * Responsbile for
  *
  * @author graham.
  */
-public interface AstroPicturePresenter {
+interface ArchivePresenter {
 
-    void setView(AstroPicturesView view);
+    void setView(ArchiveView view);
 
     /**
      * Load astronomy pictures.

@@ -1,9 +1,8 @@
-package net.binarycreations.apod.astro;
+package net.binarycreations.apod.archive.ui;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
-import net.binarycreations.apod.astro.view.AstroRowView;
 import net.binarycreations.apod.domain.AstroItem;
 
 import java.util.List;
@@ -11,17 +10,17 @@ import java.util.List;
 /**
  * @author graham.
  */
-public class AstroAdapter extends RecyclerView.Adapter<AstroAdapter.ViewHolder> {
+public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapter.ViewHolder> {
 
     private List<AstroItem> mApods;
 
-    public AstroAdapter() {
+    public AstroPictureAdapter() {
 
     }
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return new ViewHolder(new AstroRowView(parent.getContext()));
+        return new ViewHolder(new ArchiveRowView(parent.getContext()));
     }
 
     @Override
@@ -46,9 +45,9 @@ public class AstroAdapter extends RecyclerView.Adapter<AstroAdapter.ViewHolder> 
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
-        public AstroRowView mRowView;
+        public ArchiveRowView mRowView;
 
-        public ViewHolder(AstroRowView view) {
+        public ViewHolder(ArchiveRowView view) {
             super(view);
 
             mRowView = view;

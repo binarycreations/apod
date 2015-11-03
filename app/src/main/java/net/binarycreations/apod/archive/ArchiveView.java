@@ -1,4 +1,4 @@
-package net.binarycreations.apod.astro;
+package net.binarycreations.apod.archive;
 
 import net.binarycreations.apod.domain.AstroItem;
 
@@ -9,7 +9,7 @@ import java.util.List;
  *
  * @author graham.
  */
-public interface AstroPicturesView {
+interface ArchiveView {
 
     void displayPictures(List<AstroItem> toShow);
 

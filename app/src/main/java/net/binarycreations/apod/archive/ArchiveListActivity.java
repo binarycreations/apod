@@ -1,4 +1,4 @@
-package net.binarycreations.apod.astro;
+package net.binarycreations.apod.archive;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -6,10 +6,9 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import net.binarycreations.apod.R;
+import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
 import net.binarycreations.apod.domain.AstroItem;
 
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -17,13 +16,12 @@ import java.util.List;
  *
  * @author graham.
  */
-public class AstroPictureListActivity extends AppCompatActivity implements AstroPicturesView {
+public class ArchiveListActivity extends AppCompatActivity implements ArchiveView {
 
-    private AstroPicturePresenter mPresenter;
+    private ArchivePresenter mPresenter;
 
     private RecyclerView mAstroList;
-    private AstroAdapter mAdapter;
-
+    private AstroPictureAdapter mAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,18 +32,10 @@ public class AstroPictureListActivity extends AppCompatActivity implements Astro
         mAstroList.setHasFixedSize(true);
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
 
-        List<AstroItem> apods = new ArrayList<>();
-        apods.add(new AstroItem("first", "second", "thrid", new Date()));
-        apods.add(new AstroItem("first", "second", "thrid", new Date()));
-        apods.add(new AstroItem("first", "second", "thrid", new Date()));
-        apods.add(new AstroItem("first", "second", "thrid", new Date()));
-        apods.add(new AstroItem("first", "second", "thrid", new Date()));
-        apods.add(new AstroItem("first", "second", "thrid", new Date()));
-
-        mAdapter = new AstroAdapter();
+        mAdapter = new AstroPictureAdapter();
         mAstroList.setAdapter(mAdapter);
 
-        displayPictures(apods);
+        mPresenter.setView(this);
     }
 
     @Override
