@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import net.binarycreations.apod.R;
+import net.binarycreations.apod.app.ApodApp;
 import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
 import net.binarycreations.apod.domain.AstroItem;
 
@@ -28,6 +29,8 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_astro_list);
 
+        mPresenter = ApodApp.getInstance().getArchiveFactory().getArchivePresenter();
+
         mAstroList = (RecyclerView) findViewById(R.id.rv_astro_list);
         mAstroList.setHasFixedSize(true);
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
@@ -36,6 +39,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         mAstroList.setAdapter(mAdapter);
 
         mPresenter.setView(this);
+        mPresenter.loadAstroPictures();
     }
 
     @Override
