@@ -11,7 +11,7 @@ import net.binarycreations.apod.archive.ArchiveFactory;
 import net.binarycreations.apod.client.NasaApodClient;
 
 /**
- * A custom application class used as the central hook for application dependancies and global data.
+ * A custom application class used as the central hook for application dependencies and global data.
  *
  * @author graham.
  */
