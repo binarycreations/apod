@@ -1,0 +1,152 @@
+{
+    "url": "http://apod.nasa.gov/apod/image/1511/OrionNebula_Hancock_960.jpg",
+    "media_type": "image",
+    "explanation": "The Great Nebula in Orion, also known as M42, is one of the most famous nebulas in the sky. The star forming region's glowing gas clouds and hot young stars are on the right in this sharp and colorful image that includes the bluish reflection nebulae NGC 1977 and friends on the left. Located at the edge of an otherwise invisible giant molecular cloud complex, these eye-catching nebulas represent only a small fraction of this galactic neighborhood's wealth of interstellar material. Within the well-studied stellar nursery, astronomers have also identified what appear to be numerous infant planetary systems. The gorgeous skyscape spans nearly two degrees or about 45 light-years at the Orion Nebula's estimated distance of 1,500 light-years.",
+    "concepts": [],
+    "title": "The Great Orion Nebula M42"
+}
+
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1511/VenusArch_Horalek_1080.jpg",
+    "media_type": "image",
+    "explanation": "What's that in the sky? Although there was much to see in this spectacular panorama taken during the early morning hours of a day in late September, the brightest object in the sky was clearly the planet Venus. In the featured image, Venus was captured actually through a natural rock bridge, itself picturesque, in Spitzkoppe, Namibia. The planet, on the left of the opening, was complemented by a silhouette of the astrophotographer on the right. Above and beyond the rock bridge were many famous icons of a dark night sky, including, from left to right, the Pleiades star cluster, the Orion Nebula, the bright star Sirius, and the Large and Small Magellanic Clouds. This week, Venus remains visible to the east in the pre-dawn sky, being complemented by Mars, which is angularly quite close.",
+    "concepts": [],
+    "title": "Seeking Venus under the Spitzkoppe Arch"
+}
+
+{
+    "url": "https://www.youtube.com/embed/8L54gUQTqko?rel=0&showinfo=0",
+    "media_type": "video",
+    "explanation": "Most comets don't survive a close encounter with the Sun. Two years ago this month, though, Comet ISON was thought by some to be big enough to withstand its perilous sungrazing dive. The featured video shows the drama as it was recorded by the Solar and Heliospheric Observatory (SOHO), a joint mission of ESA and NASA. As many Earthlings watched in fascination, a bright area did emerge from closest approach, but it soon faded and dispersed. It is now assumed that no large fragments of Comet C/2012 S1 (ISON) survived.  Besides the comet, the active Sun is seen to eject puffs of plasma known as coronal mass ejections. Launched in 1995, sun-orbiting SOHO has become a historic device in the discovery and tracking of comets known as sungrazers.  Two months ago, a comet designated SOHO 3000 was named in honor of the record 3000th comet that was discovered on SOHO images, a total that amounts to about half of all known comets.    Astrophysicists: Browse 1,100+ codes in the Astrophysics Source Code Library",
+    "concepts": [],
+    "title": "Comet ISON Being Destroyed by the Sun"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1511/monumentvalley_pacholka_1080.jpg",
+    "media_type": "image",
+    "explanation": "You don't have to be at Monument Valley to see the Milky Way arch across the sky like this -- but it helps. Only at Monument Valley USA would you see a picturesque foreground that includes these iconic rock peaks called buttes. Buttes are composed of hard rock left behind after water has eroded away the surrounding soft rock.  In the featured image taken in 2012, the closest butte on the left and the butte to its right are known as the Mittens, while Merrick Butte can be seen just further to the right. High overhead stretches a band of diffuse light that is the central disk of our spiral Milky Way Galaxy. The band of the Milky Way can be spotted by almost anyone on almost any clear night when far enough from a city and surrounding bright lights.   APOD in Spanish: On the web and Facebook",
+    "concepts": [],
+    "title": "The Milky Way Over Monument Valley"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/20151022GhostStartrails1024.jpg",
+    "media_type": "image",
+    "explanation": "Don't be scared. Stars won't fall from the sky and ghosts won't really haunt your neighborhood tonight. But it looks like they might be doing just that in this eerie picture of an eccentric old abandoned house in moonlight. A treat for the eye the image is a trick of stacked multiple exposures, 60 frames exposed for 25 seconds each. While the digital frames were recorded with a camera fixed to a tripod stars traced concentric arcs about the north celestial pole, only a reflection of planet Earth's rotation on its axis. Conveniently marked by bright star Polaris, the pole could be positioned above the peaks of the deserted dwelling. Wrapped in a blanket to stay warm, the photographer's own movements during the exposures were blended into the ghostly apparitions. Of course, the grinning Jack-o-Lantern is there to wish you a safe and Happy Halloween!",
+    "concepts": [],
+    "title": "Ghosts and Star Trails"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/IC2118_A_full900.jpg",
+    "media_type": "image",
+    "explanation": "Double, double toil and trouble; Fire burn, and cauldron bubble .... maybe Macbeth should have consulted the Witch Head Nebula. A frighteningly shaped reflection nebula, this cosmic crone is about 800 light-years away though. Its malevolent visage seems to glare toward nearby bright star Rigel in Orion, just off the right edge of this frame. More formally known as IC 2118, the interstellar cloud of dust and gas is nearly 70 light-years across, its dust grains reflecting Rigel's starlight. In this composite portrait, the nebula's color is caused not only by the star's intense bluish light but because the dust grains scatter blue light more efficiently than red. The same physical process causes Earth's daytime sky to appear blue, although the scatterers in planet Earth's atmosphere are molecules of nitrogen and oxygen.",
+    "concepts": [],
+    "title": "The Witch Head Nebula"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/IC1871_HSTwager1024.jpg",
+    "media_type": "image",
+    "explanation": "This cosmic close-up looks deep inside the Soul Nebula. The dark and brooding dust clouds outlined by bright ridges of glowing gas are cataloged as IC 1871. About 25 light-years across, the telescopic field of view spans only a small part of the much larger Heart and Soul nebulae. At an estimated distance of 6,500 light-years the star-forming complex lies within the Perseus spiral arm of the Milky Way, seen in planet Earth's skies toward the constellation Cassiopeia. An example of triggered star formation, the dense star-forming clouds of IC 1871 are themselves sculpted by the intense winds and radiation of the region's massive young stars. This color image adopts a palette made popular in Hubble images of star-forming regions.",
+    "concepts": [],
+    "title": "IC 1871: Inside the Soul Nebula"
+}
+
+{
+    "url": "https://www.youtube.com/embed/hu6hIhW00Fk?rel=0&showinfo=0",
+    "media_type": "video",
+    "explanation": "What happens when a star gets too close to a black hole? Recent observations from Earth-orbiting observatories of an event dubbed ASASSN-14li, in a distant galactic center, appears to be giving one star's harrowing story. Although angularly unresolved, variations in high energy light indicate that some of the star became shredded and reformed into a disk swirling around the dark abyss. In the hypothesized scenario envisioned, a jet formed on the spin axis of the black hole.  The innermost part of the disk, colored white, glows most strongly in X-rays and may drive a periodic wind, shown in blue.  Future X-ray and ultraviolet observations of stellar disruptions by black holes -- including those in the center of our own galaxy -- hold promise of telling us about the complex dynamics of some of the hottest and highest-gravity places in the universe.    Gallery: October's Venus, Jupiter, & Mars Conjunction",
+    "concepts": [],
+    "title": "Massive Black Hole Shreds Passing Star"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/Heart_Addis_960.jpg",
+    "media_type": "image",
+    "explanation": "What's that inside the Heart Nebula? First, the large emission nebula dubbed IC 1805 looks, in whole, like a human heart.  The nebula glows brightly in red light emitted by its most prominent element: hydrogen.  The red glow and the larger shape are all created by a small group of stars near the nebula's center.  In the center of the Heart Nebula are young stars from the open star cluster Melotte 15 that are eroding away several picturesque dust pillars with their energetic light and winds. The open cluster of stars contains a few bright stars nearly 50 times the mass of our Sun, many dim stars only a fraction of the mass of our Sun, and an absent microquasar that was expelled millions of years ago.  The Heart Nebula is located about 7,500 light years away toward the constellation of Cassiopeia.  At the top right is the companion Fishhead Nebula.",
+    "concepts": [],
+    "title": "Bright from the Heart Nebula"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/PlutoMoons_NewHorizons_1080.jpg",
+    "media_type": "image",
+    "explanation": "What do the moons of Pluto look like? Before a decade ago, only the largest moon Charon was known, but never imaged. As the robotic New Horizons spacecraft was prepared and launched, other moons were identified on Hubble images but remained only specks of light. Finally, this past summer, New Horizons swept right past Pluto, photographed Pluto and Charon in detail, and took the best images of Styx, Nix, Kerberos, and Hydra that it could. The featured image composite shows the results -- each moon is seen to have a distinct shape, while underlying complexity is only hinted. Even though not satisfyingly resolved, these images are likely to be the best available to humanity for some time. This is because the moons are too small and distant for contemporary Earth-based telescopes to resolve, and no new missions to the Pluto system are planned.    Gallery: October's Venus, Jupiter, & Mars Conjunction",
+    "concepts": [],
+    "title": "Charon and the Small Moons of Pluto"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/jupiterpersonvenus_nikodem_960.jpg",
+    "media_type": "image",
+    "explanation": "It was visible around the world. The sunset conjunction of Jupiter and Venus in 2012 was visible almost no matter where you lived on Earth.  Anyone on the planet with a clear western horizon at sunset could see them. Pictured above in 2012, a creative photographer traveled away from the town lights of Szubin, Poland to image a near closest approach of the two planets. The bright planets were separated only by three degrees and his daughter striking a humorous pose. A faint red sunset still glowed in the background. Jupiter and Venus will be at it again this week before sunrise, passing under two degree from each other -- and even with bonus planet Mars nearby.    Follow APOD on: Facebook,  Google Plus, or Twitter",
+    "concepts": [],
+    "title": "Jupiter and Venus from Earth"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/JupiterHST1522a1280.jpg",
+    "media_type": "image",
+    "explanation": "Two remarkable global maps of Jupiter's banded cloud tops can be compared by just sliding your cursor over this sharp projection (or follow this link) of image data from the Hubble Space Telescope. Both captured on January 19, during back-to-back 10 hour rotations of the ruling gas giant, the all-planet projections represent the first in a series of planned annual portraits by the Outer Planet Atmospheres Legacy program.  Comparing the two highlights cloud movements and measures wind speeds in the planet's dynamic atmosphere. In fact, the Great Red Spot, the famous long-lived swirling storm boasting 300 mile per hour winds, is seen sporting a rotating, twisting filament. The images confirm that Great Red Spot is still shrinking, though still larger than planet Earth. Posing next to it (lower right) is Oval BA, also known as Red Spot Junior.",
+    "concepts": [],
+    "title": "Jupiter in 2015"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/M94_hst1542a.jpg",
+    "media_type": "image",
+    "explanation": "Beautiful island universe Messier 94 lies a mere 15 million light-years distant in the northern constellation of the hunting dogs, Canes Venatici. A popular target for earth-based astronomers, the face-on spiral galaxy is about 30,000 light-years across, with spiral arms sweeping through the outskirts of its broad disk. But this Hubble Space Telescope field of view spans about 7,000 light-years or so across M94's central region. The sharp close-up examines the galaxy's compact, bright nucleus and prominent inner dust lanes, surrounded by a remarkable bluish ring of young, massive stars. The massive stars in the ring are all likely less than 10 million years old, indicating the galaxy experienced a well-defined era of rapid star formation. As a result, while the small, bright nucleus is typical of the Seyfert class of active galaxies, M94 is also known as a starburst galaxy. Because M94 is relatively nearby, astronomers can explore in detail reasons for the galaxy's burst of star formation.",
+    "concepts": [],
+    "title": "Starburst Galaxy Messier 94"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/M17_colombari_1024.jpg",
+    "media_type": "image",
+    "explanation": "Sculpted by stellar winds and radiation, the star factory known as Messier 17 lies some 5,500 light-years away in the nebula-rich constellation Sagittarius. At that distance, this 1/3 degree wide field of view spans over 30 light-years. The sharp composite, color image, highlights faint details of the region's gas and dust clouds against a backdrop of central Milky Way stars. Stellar winds and energetic light from hot, massive stars formed from M17 stock of cosmic gas and dust have slowly carved away at the remaining interstellar material producing the cavernous appearance and undulating shapes. M17 is also known as the Omega Nebula or the Swan Nebula.",
+    "concepts": [],
+    "title": "Star Factory Messier 17"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/EnceladusNorth_Cassini_960.jpg",
+    "media_type": "image",
+    "explanation": "The north pole of Saturn's moon Enceladus is unexpectedly fascinating and complex. Previous to the latest flyby of the robotic Cassini spacecraft, the northern region was known mostly for its unusually high abundance of craters. Last week's flyby, however, returned images of unprecedented detail, including the featured image showing the expected craters coupled with an unexpected and circuitous pattern of picturesque cracks and fractures.  Broken terrain has been recorded at lower latitudes, with deep canyons dubbed Tiger Stripes near Enceladus' South Pole. The fractures may further indicate global interplay between the surface and potential seas underneath, seas that future missions might target for signs of life.   Retrospective: Today in APOD History",
+    "concepts": [],
+    "title": "The Fractured North Pole of Saturn's Enceladus"
+}
+
+{
+    "url": "https://www.youtube.com/embed/Qg6PwRI2uS8?rel=0",
+    "media_type": "video",
+    "explanation": "What happens when two black holes collide? This extreme scenario likely occurs in the centers of some merging galaxies and multiple star systems. The featured video shows a computer animation of the final stages of such a merger, while highlighting the gravitational lensing effects that would appear on a background starfield. The black regions indicate the event horizons of the dynamic duo, while a surrounding ring of shifting background stars indicates the position of their combined Einstein ring. All background stars not only have images visible outside of this Einstein ring, but also have one or more companion images visible on the inside. Eventually the two black holes coalesce.  The end stages of such a merger may provide a strong and predictable blast of gravitational radiation, a much sought after form of radiation different than light that has never yet been directly observed.   Space Music Video: APOD images from September 2015",
+    "concepts": [],
+    "title": "When Black Holes Collide"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/SouthernCrossSky_Fairbairn_960.jpg",
+    "media_type": "image",
+    "explanation": "Have you ever seen the Southern Cross? This famous constellation is best seen from Earth's Southern Hemisphere. Captured from Rio de Janeiro, Brazil, the four bright stars that mark the Southern Cross are visible just above the horizon in the featured image. On the left of this constellation, also known as The Crux, is the orange star Gamma Crucis.  The band of stars, dust, and gas rising through the middle of the image mosaic is part our Milky Way Galaxy.  Just to the right of the Southern Cross is the dark Coal Sack Nebula, and the bright nebula at the top of the image is the Carina Nebula.  The Southern Cross is such a famous constellation that it is depicted on the national flags of Australia and New Zealand.   Follow APOD on: Facebook,  Google Plus, or Twitter",
+    "concepts": [],
+    "title": "The Southern Cross in a Southern Sky"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/mammatus_lindsay_960.jpg",
+    "media_type": "image",
+    "explanation": "Why is this cloud so bubbly?  Normally, cloud bottoms are flat. The flatness is caused by moist warm air that rises and cools and so condenses into water droplets at a specific temperature, which usually corresponds to a very specific height.  As water droplets grow, an opaque cloud forms.  Under some conditions, however, cloud pockets can develop that contain large droplets of water or ice that fall into clear air as they evaporate.  Such pockets may occur in turbulent air near a thunderstorm.  Resulting mammatus clouds can appear especially dramatic if sunlit from the side.  These mammatus clouds were photographed over Regina, Saskatchewan, Canada during the summer of 2012.",
+    "concepts": [],
+    "title": "Mammatus Clouds Over Saskatchewan"
+}
+
+{
+    "url": "http://apod.nasa.gov/apod/image/1510/M81crawford1024_fh.jpg",
+    "media_type": "image",
+    "explanation": "One of the brightest galaxies in planet Earth's sky is similar in size to our Milky Way Galaxy: big, beautiful M81. The grand spiral galaxy can be found toward the northern constellation of the Great Bear (Ursa Major). This superbly detailed image reveals M81's bright yellow nucleus, blue spiral arms, tell tale pinkish star forming regions, and sweeping cosmic dust lanes with a scale comparable to the Milky Way. Hinting at a disorderly past, a remarkable dust lane actually runs straight through the disk, to the left of the galactic center, contrary to M81's other prominent spiral features. The errant dust lane may be the lingering result of a close encounter between between M81 and its smaller companion galaxy, M82. Scrutiny of variable stars in M81 has yielded one of the best determined distances for an external galaxy -- 11.8 million light-years. M81's dwarf companion galaxy Holmberg IX can be seen just above the large spiral.",
+    "concepts": [],
+    "title": "Bright Spiral Galaxy M81"
+}
