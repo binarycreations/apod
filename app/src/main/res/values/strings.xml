@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Astronomy Picture of the Day</string>
+    <string name="no_connectivity">No connectivity available</string>
+    <string name="archive_unavailable">Unable to retrieve astronomy picks. Please try again later.</string>
 </resources>

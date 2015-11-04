@@ -13,4 +13,7 @@ interface ArchiveView {
 
     void displayPictures(List<AstroItem> toShow);
 
+    void displayNoConnectivity();
+
+    void displayArchiveUnavailable();
 }

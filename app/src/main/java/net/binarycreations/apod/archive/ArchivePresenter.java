@@ -1,17 +1,19 @@
 package net.binarycreations.apod.archive;
 
+import java.util.Date;
+
 /**
  * Responsbile for
  *
  * @author graham.
  */
-interface ArchivePresenter {
+public interface ArchivePresenter {
 
     void setView(ArchiveView view);
 
     /**
      * Load astronomy pictures.
      */
-    void loadAstroPictures();
+    void loadArchivePictures(Date from, Date to);
 
 }
