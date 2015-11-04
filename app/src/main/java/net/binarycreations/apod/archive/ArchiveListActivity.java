@@ -4,8 +4,10 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.widget.Toast;
 
 import net.binarycreations.apod.R;
@@ -35,8 +37,6 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_astro_list);
 
-        mPresenter = ApodApp.getInstance().getArchiveFactory().getArchivePresenter();
-
         mAstroList = (RecyclerView) findViewById(R.id.rv_archive_list);
         mAstroList.setHasFixedSize(true);
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
@@ -44,6 +44,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         mAdapter = new AstroPictureAdapter();
         mAstroList.setAdapter(mAdapter);
 
+        mPresenter = ApodApp.getInstance().getArchiveFactory().getArchivePresenter();
         mPresenter.setView(this);
         mPresenter.loadArchivePictures(fromLastWeek(), toToday());
     }
@@ -54,6 +55,15 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         inflater.inflate(R.menu.archive_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.action_sync) {
+            mPresenter.loadArchivePictures(fromLastWeek(), toToday());
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     private Date toToday() {
