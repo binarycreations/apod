@@ -8,7 +8,7 @@ import net.binarycreations.apod.domain.AstroItem;
 import java.util.List;
 
 /**
- * 
+ *
  *
  * @author graham.
  */
@@ -27,6 +27,12 @@ public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapte
     public void onBindViewHolder(ViewHolder holder, int position) {
         AstroItem item = mApods.get(position);
         holder.mRowView.setTitle(item.getTitle());
+
+        if (AstroItem.MediaType.IMAGE == item.getType()) {
+            holder.mRowView.showPicture(item.getUrl());
+        } else {
+            holder.mRowView.showVideo();
+        }
 
         checkForPagination(position);
     }

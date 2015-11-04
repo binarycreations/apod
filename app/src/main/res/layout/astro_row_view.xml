@@ -7,11 +7,19 @@
     >
 
     <ImageView
+        android:id="@+id/iv_astro_row_view_video"
+        android:layout_width="match_parent"
+        android:layout_height="180dp"
+        android:background="@color/colorPrimaryDark"
+        android:src="@drawable/ic_videocam_black"
+        android:visibility="gone"
+        />
+
+    <ImageView
         android:id="@+id/iv_astro_row_view_picture"
         android:layout_width="match_parent"
         android:layout_height="180dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/apod_today"
         />
 
     <TextView
@@ -29,7 +37,6 @@
         android:paddingRight="15dp"
         android:paddingTop="2dp"
         android:scrollHorizontally="true"
-        android:text="The Milky Way Over Monument Valley"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white"
         />
