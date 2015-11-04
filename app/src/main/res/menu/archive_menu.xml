@@ -4,7 +4,8 @@
 
     <item
         android:id="@+id/action_sync"
-        android:title="Sync"
+        android:title="Refresh"
+        android:icon="@drawable/ic_action_refresh"
         app:showAsAction="ifRoom"/>
 
 </menu>
