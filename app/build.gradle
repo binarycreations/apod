@@ -12,7 +12,13 @@ android {
         versionName "1.0"
     }
     buildTypes {
+        debug {
+            // Externalise the Nasa API key used for local development.
+            buildConfigField "String", "API_KEY", "$nasaApiKeyDev"
+        }
         release {
+            // Externalise the Nasa API key to be used in production.
+            buildConfigField "String", "API_KEY", "$nasaApiKeyProd"
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }

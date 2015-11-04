@@ -1,7 +1,5 @@
 package net.binarycreations.apod.archive;
 
-import com.squareup.okhttp.OkHttpClient;
-
 import net.binarycreations.apod.app.background.Tasks;
 import net.binarycreations.apod.client.NasaApodClient;
 
@@ -12,8 +10,17 @@ import net.binarycreations.apod.client.NasaApodClient;
  */
 public class ArchiveFactory {
 
+    private final Tasks mTasks;
+
+    private final NasaApodClient mClient;
+
+    public ArchiveFactory(Tasks tasks, NasaApodClient client) {
+        mTasks = tasks;
+        mClient = client;
+    }
+
     public ArchivePresenter getArchivePresenter() {
-        return new ArchivePresenterImpl(new ArchiveInteractorImpl(new Tasks(), new NasaApodClient(new OkHttpClient(), "DEMO_KEY")));
+        return new ArchivePresenterImpl(new ArchiveInteractorImpl(mTasks, mClient));
     }
 
 }

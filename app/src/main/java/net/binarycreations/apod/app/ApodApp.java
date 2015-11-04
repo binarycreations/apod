@@ -3,7 +3,12 @@ package net.binarycreations.apod.app;
 import android.app.Application;
 import android.util.Log;
 
+import com.squareup.okhttp.OkHttpClient;
+
+import net.binarycreations.apod.BuildConfig;
+import net.binarycreations.apod.app.background.Tasks;
 import net.binarycreations.apod.archive.ArchiveFactory;
+import net.binarycreations.apod.client.NasaApodClient;
 
 /**
  * A custom application class used as the central hook for application dependancies and global data.
@@ -18,6 +23,10 @@ public class ApodApp extends Application {
 
     private ArchiveFactory mArchiveFactory;
 
+    private NasaApodClient mApodClient;
+
+    private Tasks mTasks;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -30,12 +39,24 @@ public class ApodApp extends Application {
         return sInstance;
     }
 
-    public ArchiveFactory getArchiveFactory() {
-        if (mArchiveFactory == null) {
-            mArchiveFactory = new ArchiveFactory();
+    private synchronized Tasks getTasks() {
+        if (mTasks == null) {
+            mTasks = new Tasks();
         }
-
-        return mArchiveFactory;
+        return mTasks;
     }
 
+    private synchronized NasaApodClient getApodClient() {
+        if (mApodClient == null) {
+            mApodClient = new NasaApodClient(new OkHttpClient(), BuildConfig.API_KEY);
+        }
+        return mApodClient;
+    }
+
+    public synchronized ArchiveFactory getArchiveFactory() {
+        if (mArchiveFactory == null) {
+            mArchiveFactory = new ArchiveFactory(getTasks(), getApodClient());
+        }
+        return mArchiveFactory;
+    }
 }
