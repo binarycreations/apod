@@ -17,6 +17,6 @@ public class Task {
 
     public <T> void executeTask(BackgroundJob<T> toRun, Conclusion<T> conclusion) {
         AsyncTaskRunner<T> runner = mTaskRunnerFactory.createAsyncTaskRunner(toRun, conclusion);
-        runner.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, null);
+        runner.executeOnExecutor(AsyncTask.SERIAL_EXECUTOR, (Void) null);
     }
 }
