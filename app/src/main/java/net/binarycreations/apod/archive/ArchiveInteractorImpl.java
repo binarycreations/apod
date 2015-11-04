@@ -36,7 +36,7 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
             public List<AstroItem> doInBackground() throws Exception {
                 List<AstroItem> result = new ArrayList<AstroItem>();
 
-                List<Date> daysBetween = getDaysBetween(from, to);
+                List<Date> daysBetween = getDaysBetweenInReverse(from, to);
                 for(Date day : daysBetween) {
                     result.add(mClient.requestAstronomyPick(day));
                 }
@@ -46,7 +46,7 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
         }, archiveItems);
     }
 
-    private List<Date> getDaysBetween(Date from, Date to) {
+    private List<Date> getDaysBetweenInReverse(Date from, Date to) {
         List<Date> daysBetween = new ArrayList<>();
 
         Calendar fromCalendar = Calendar.getInstance();
@@ -56,12 +56,12 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
         Calendar toCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         toCalendar.setTime(to);
 
-        while(fromCalendar.before(toCalendar)) {
-            daysBetween.add(fromCalendar.getTime());
-            fromCalendar.add(Calendar.DAY_OF_YEAR, 1);
+        while(toCalendar.after(fromCalendar)) {
+            daysBetween.add(toCalendar.getTime());
+            toCalendar.add(Calendar.DAY_OF_YEAR, -1);
         }
 
-        daysBetween.add(toCalendar.getTime());
+        daysBetween.add(fromCalendar.getTime());
         return daysBetween;
     }
 }

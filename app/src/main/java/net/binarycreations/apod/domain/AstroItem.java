@@ -53,4 +53,12 @@ public class AstroItem {
     public Date getDate() {
         return mDate;
     }
+
+    @Override
+    public String toString() {
+        return "AstroItem{" +
+                "mTitle='" + mTitle + '\'' +
+                ", mDate=" + mDate +
+                '}';
+    }
 }

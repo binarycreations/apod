@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -13,6 +12,7 @@ import android.widget.Toast;
 import net.binarycreations.apod.R;
 import net.binarycreations.apod.app.ApodApp;
 import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
+import net.binarycreations.apod.archive.ui.ArchivePaginationListener;
 import net.binarycreations.apod.domain.AstroItem;
 
 import java.util.Calendar;
@@ -25,7 +25,7 @@ import java.util.TimeZone;
  *
  * @author graham.
  */
-public class ArchiveListActivity extends AppCompatActivity implements ArchiveView {
+public class ArchiveListActivity extends AppCompatActivity implements ArchiveView, ArchivePaginationListener {
 
     private ArchivePresenter mPresenter;
 
@@ -42,6 +42,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
 
         mAdapter = new AstroPictureAdapter();
+        mAdapter.setPaginationListener(this);
         mAstroList.setAdapter(mAdapter);
 
         mPresenter = ApodApp.getInstance().getArchiveFactory().getArchivePresenter();
@@ -72,13 +73,13 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
 
     private Date fromLastWeek() {
         Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        calendar.add(Calendar.DAY_OF_YEAR, -7);
+        calendar.add(Calendar.DAY_OF_YEAR, -6);
         return calendar.getTime();
     }
 
     @Override
     public void displayPictures(List<AstroItem> toShow) {
-        mAdapter.setItems(toShow);
+        mAdapter.appendItems(toShow);
     }
 
     @Override
@@ -89,5 +90,29 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     @Override
     public void displayArchiveUnavailable() {
         Toast.makeText(this, getString(R.string.archive_unavailable), Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onNextPagination(AstroItem atEnd) {
+        Date lastDay = atEnd.getDate();
+        mPresenter.loadArchivePictures(previousWeek(lastDay), previousDay(lastDay));
+    }
+
+    private Date previousDay(Date lastDay) {
+        Calendar previousCalendarDay = Calendar.getInstance();
+        previousCalendarDay.setTime(lastDay);
+        previousCalendarDay.setTimeZone(TimeZone.getTimeZone("UTC"));
+        previousCalendarDay.add(Calendar.DAY_OF_YEAR, -1);
+
+        return previousCalendarDay.getTime();
+    }
+
+    private Date previousWeek(Date lastDay) {
+        Calendar previousCalendarWeek = Calendar.getInstance();
+        previousCalendarWeek.setTime(lastDay);
+        previousCalendarWeek.setTimeZone(TimeZone.getTimeZone("UTC"));
+        previousCalendarWeek.add(Calendar.DAY_OF_YEAR, -7);
+
+        return previousCalendarWeek.getTime();
     }
 }

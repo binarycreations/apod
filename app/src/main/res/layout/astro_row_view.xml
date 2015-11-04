@@ -15,19 +15,6 @@
         />
 
     <TextView
-        android:id="@+id/tv_astro_row_view_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:background="#4e000000"
-        android:paddingLeft="5dp"
-        android:paddingRight="5dp"
-        android:text="1st, November"
-        android:textColor="@android:color/white"
-        />
-
-
-    <TextView
         android:id="@+id/tv_astro_row_view_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

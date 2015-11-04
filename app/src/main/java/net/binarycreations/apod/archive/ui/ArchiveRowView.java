@@ -28,16 +28,11 @@ public class ArchiveRowView extends RelativeLayout {
         inflate(getContext(), R.layout.astro_row_view, this);
 
         mTitle = (TextView) findViewById(R.id.tv_astro_row_view_title);
-        mDate = (TextView) findViewById(R.id.tv_astro_row_view_date);
         mPicture = (ImageView) findViewById(R.id.iv_astro_row_view_picture);
     }
 
     public void setTitle(String title) {
         mTitle.setText(title);
-    }
-
-    public void setDate(String date) {
-        mDate.setText(date);
     }
 
     public void pictureUrl(String url) {

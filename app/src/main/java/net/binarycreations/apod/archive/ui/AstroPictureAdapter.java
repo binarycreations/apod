@@ -8,15 +8,15 @@ import net.binarycreations.apod.domain.AstroItem;
 import java.util.List;
 
 /**
+ * 
+ *
  * @author graham.
  */
 public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapter.ViewHolder> {
 
     private List<AstroItem> mApods;
 
-    public AstroPictureAdapter() {
-
-    }
+    private ArchivePaginationListener mPaginationListener;
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -25,10 +25,16 @@ public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-
         AstroItem item = mApods.get(position);
-
         holder.mRowView.setTitle(item.getTitle());
+
+        checkForPagination(position);
+    }
+
+    private void checkForPagination(int position) {
+        if (mPaginationListener != null && (mApods.size() - 1) <= position) {
+            mPaginationListener.onNextPagination(mApods.get(mApods.size() - 1));
+        }
     }
 
     @Override
@@ -36,11 +42,19 @@ public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapte
         return mApods == null ? 0 : mApods.size();
     }
 
-    public void setItems(List<AstroItem> astroItems) {
-        if (mApods == null || !mApods.equals(astroItems)) {
+    public void appendItems(List<AstroItem> astroItems) {
+        if (mApods == null) {
             mApods = astroItems;
             notifyDataSetChanged();
+        } else {
+            int positionInsertedAt = mApods.size();
+            mApods.addAll(positionInsertedAt, astroItems);
+            notifyItemRangeInserted(positionInsertedAt, astroItems.size());
         }
+    }
+
+    public void setPaginationListener(ArchivePaginationListener listener) {
+        mPaginationListener = listener;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
