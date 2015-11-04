@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import net.binarycreations.apod.R;
@@ -25,7 +26,8 @@ import java.util.TimeZone;
  *
  * @author graham.
  */
-public class ArchiveListActivity extends AppCompatActivity implements ArchiveView, ArchivePaginationListener {
+public class ArchiveListActivity extends AppCompatActivity implements ArchiveView, ArchivePaginationListener, View
+        .OnClickListener {
 
     private ArchivePresenter mPresenter;
 
@@ -42,6 +44,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
 
         mAdapter = new AstroPictureAdapter();
+        mAdapter.setOnClickListener(this);
         mAdapter.setPaginationListener(this);
         mAstroList.setAdapter(mAdapter);
 
@@ -114,5 +117,11 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         previousCalendarWeek.add(Calendar.DAY_OF_YEAR, -7);
 
         return previousCalendarWeek.getTime();
+    }
+
+    public void onClick(View v) {
+        int position = mAstroList.getChildAdapterPosition(v);
+        AstroItem item = mAdapter.getItem(position);
+        Toast.makeText(this, "TITLE = " + item.getTitle(), Toast.LENGTH_SHORT).show();
     }
 }
