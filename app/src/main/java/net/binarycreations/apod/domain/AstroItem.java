@@ -1,5 +1,8 @@
 package net.binarycreations.apod.domain;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
@@ -7,7 +10,32 @@ import java.util.Date;
  *
  * @author graham.
  */
-public class AstroItem {
+public class AstroItem implements Parcelable {
+
+    public static final Parcelable.Creator<AstroItem> CREATOR = new Parcelable.Creator<AstroItem>() {
+
+        public AstroItem createFromParcel(Parcel in) {
+            return new AstroItem(in);
+        }
+
+        public AstroItem[] newArray(int size) {
+            return new AstroItem[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(mTitle);
+        dest.writeString(mExplanation);
+        dest.writeString(mUrl);
+        dest.writeString(mType.toString());
+        dest.writeLong(mDate.getTime());
+    }
 
     public enum MediaType { IMAGE, VIDEO }
 
@@ -32,6 +60,19 @@ public class AstroItem {
         mUrl = url;
         mType = type;
         mDate = date;
+    }
+
+    /**
+     * Construct an Astro Item from a parcel.
+     *
+     * @param in containing required data.
+     */
+    public AstroItem(Parcel in) {
+        mTitle = in.readString();
+        mExplanation = in.readString();
+        mUrl = in.readString();
+        mType = MediaType.valueOf(in.readString());
+        mDate = new Date(in.readLong());
     }
 
     public String getTitle() {

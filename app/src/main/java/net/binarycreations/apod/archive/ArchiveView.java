@@ -16,4 +16,6 @@ interface ArchiveView {
     void displayNoConnectivity();
 
     void displayArchiveUnavailable();
+
+    void displayAstroExplanation(AstroItem item);
 }

@@ -42,4 +42,8 @@ class ArchivePresenterImpl implements ArchivePresenter {
         });
     }
 
+    @Override
+    public void onAstroPictureClick(AstroItem item) {
+        mView.displayAstroExplanation(item);
+    }
 }

@@ -1,5 +1,6 @@
 package net.binarycreations.apod.archive;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,6 +15,7 @@ import net.binarycreations.apod.R;
 import net.binarycreations.apod.app.ApodApp;
 import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
 import net.binarycreations.apod.archive.ui.ArchivePaginationListener;
+import net.binarycreations.apod.detail.AstroDetailActivity;
 import net.binarycreations.apod.domain.AstroItem;
 
 import java.util.Calendar;
@@ -96,6 +98,13 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     }
 
     @Override
+    public void displayAstroExplanation(AstroItem item) {
+        Intent explanationScreen = new Intent(this, AstroDetailActivity.class);
+        explanationScreen.putExtra(AstroDetailActivity.ASTRO_PICK, item);
+        startActivity(explanationScreen);
+    }
+
+    @Override
     public void onNextPagination(AstroItem atEnd) {
         Date lastDay = atEnd.getDate();
         mPresenter.loadArchivePictures(previousWeek(lastDay), previousDay(lastDay));
@@ -122,6 +131,6 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     public void onClick(View v) {
         int position = mAstroList.getChildAdapterPosition(v);
         AstroItem item = mAdapter.getItem(position);
-        Toast.makeText(this, "TITLE = " + item.getTitle(), Toast.LENGTH_SHORT).show();
+        mPresenter.onAstroPictureClick(item);
     }
 }
