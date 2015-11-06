@@ -19,8 +19,12 @@ public class ArchiveFactory {
         mClient = client;
     }
 
+    public ArchiveInteractor getArchiveInteractor() {
+        return new ArchiveInteractorImpl(mTasks, mClient);
+    }
+
     public ArchivePresenter getArchivePresenter() {
-        return new ArchivePresenterImpl(new ArchiveInteractorImpl(mTasks, mClient));
+        return new ArchivePresenterImpl(getArchiveInteractor());
     }
 
 }

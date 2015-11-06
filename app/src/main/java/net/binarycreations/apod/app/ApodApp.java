@@ -32,6 +32,11 @@ public class ApodApp extends Application {
         super.onCreate();
         Log.d(TAG, "onCreate");
 
+        // Create graph of dependencies required by the application.
+        mTasks = new Tasks();
+        mApodClient = new NasaApodClient(new OkHttpClient(), BuildConfig.API_KEY);
+        mArchiveFactory = new ArchiveFactory(mTasks, mApodClient);
+
         sInstance = this;
     }
 
@@ -39,24 +44,7 @@ public class ApodApp extends Application {
         return sInstance;
     }
 
-    private synchronized Tasks getTasks() {
-        if (mTasks == null) {
-            mTasks = new Tasks();
-        }
-        return mTasks;
-    }
-
-    private synchronized NasaApodClient getApodClient() {
-        if (mApodClient == null) {
-            mApodClient = new NasaApodClient(new OkHttpClient(), BuildConfig.API_KEY);
-        }
-        return mApodClient;
-    }
-
     public synchronized ArchiveFactory getArchiveFactory() {
-        if (mArchiveFactory == null) {
-            mArchiveFactory = new ArchiveFactory(getTasks(), getApodClient());
-        }
         return mArchiveFactory;
     }
 }
