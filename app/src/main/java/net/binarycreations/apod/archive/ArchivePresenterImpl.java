@@ -7,7 +7,7 @@ import net.binarycreations.apod.domain.AstroItem;
 import java.util.Date;
 import java.util.List;
 
-class ArchivePresenterImpl implements ArchivePresenter {
+class ArchivePresenterImpl implements ArchivePresenter, Conclusion<List<AstroItem>> {
 
     private final ArchiveInteractor mInteractor;
 
@@ -24,26 +24,25 @@ class ArchivePresenterImpl implements ArchivePresenter {
 
     @Override
     public void loadArchivePictures(Date from, Date to) {
-        mInteractor.getArchiveItems(from, to, new Conclusion<List<AstroItem>>() {
-
-            @Override
-            public void onError(Exception exception) {
-                if (exception instanceof ApiError) {
-                    mView.displayArchiveUnavailable();
-                } else {
-                    mView.displayNoConnectivity();
-                }
-            }
-
-            @Override
-            public void onConclusion(List<AstroItem> result) {
-                mView.displayPictures(result);
-            }
-        });
+        mInteractor.getArchiveItems(from, to, this);
     }
 
     @Override
     public void onAstroPictureClick(AstroItem item) {
         mView.displayAstroExplanation(item);
+    }
+
+    @Override
+    public void onError(Exception exception) {
+        if (exception instanceof ApiError) {
+            mView.displayArchiveUnavailable();
+        } else {
+            mView.displayNoConnectivity();
+        }
+    }
+
+    @Override
+    public void onConclusion(List<AstroItem> result) {
+        mView.displayPictures(result);
     }
 }
