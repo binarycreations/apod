@@ -5,12 +5,17 @@ import net.binarycreations.apod.domain.AstroItem;
 import java.util.Date;
 
 /**
- * Responsbile for
+ * Handles user interactions whilst browsing the archive.
  *
  * @author graham.
  */
 public interface ArchivePresenter {
 
+    /**
+     * Set the view.
+     *
+     * @param view instance to use.
+     */
     void setView(ArchiveView view);
 
     /**

@@ -33,7 +33,6 @@ public class AstroDetailActivity extends AppCompatActivity {
     private TextView mTitle;
     private TextView mExplanation;
     private ImageView mVideoIcon;
-
     private ImageView mDetailPicture;
 
     private ShareActionProvider mShareActionProvider;

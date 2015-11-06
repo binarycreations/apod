@@ -9,7 +9,7 @@ import net.binarycreations.apod.domain.AstroItem;
 import java.util.List;
 
 /**
- *
+ * An adapter used to display a paginating list of astronomy pictures.
  *
  * @author graham.
  */
