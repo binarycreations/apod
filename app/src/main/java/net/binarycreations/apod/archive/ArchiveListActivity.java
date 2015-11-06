@@ -110,11 +110,13 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
 
     @Override
     public void displayNoConnectivity() {
+        mIsLoading = false;
         Toast.makeText(this, getString(R.string.no_connectivity), Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void displayArchiveUnavailable() {
+        mIsLoading = false;
         Toast.makeText(this, getString(R.string.archive_unavailable), Toast.LENGTH_LONG).show();
     }
 
