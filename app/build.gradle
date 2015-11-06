@@ -12,6 +12,14 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    signingConfigs {
+        release {
+            storeFile file(KEYSTORE_FILE)
+            storePassword KEYSTORE_PWD
+            keyAlias KEY_ALIAS
+            keyPassword KEY_PWD
+        }
+    }
     buildTypes {
         debug {
             // Externalise the Nasa API key used for local development.
@@ -20,6 +28,7 @@ android {
         release {
             // Externalise the Nasa API key to be used in production.
             buildConfigField "String", "API_KEY", "$nasaApiKeyProd"
+            signingConfig signingConfigs.release
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
