@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -30,6 +31,8 @@ import java.util.TimeZone;
  */
 public class ArchiveListActivity extends AppCompatActivity implements ArchiveView, ArchivePaginationListener, View
         .OnClickListener {
+
+    private static final String TAG = ArchiveListActivity.class.getSimpleName();
 
     private ArchivePresenter mPresenter;
 
@@ -87,8 +90,12 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     }
 
     private synchronized void loadArchivePictures(Date from, Date to) {
-        mIsLoading = true;
-        mPresenter.loadArchivePictures(from, to);
+        if (mIsLoading) {
+            Log.d(TAG, "Already loading archive pictures");
+        } else {
+            mIsLoading = true;
+            mPresenter.loadArchivePictures(from, to);
+        }
     }
 
     private Date toToday() {
@@ -129,21 +136,19 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     @Override
     public void onNextPagination(AstroItem atEnd) {
         Date lastDay = atEnd.getDate();
-        mPresenter.loadArchivePictures(previousWeek(lastDay), previousDay(lastDay));
+        loadArchivePictures(previousWeek(lastDay), previousDay(lastDay));
     }
 
     private Date previousDay(Date lastDay) {
-        Calendar previousCalendarDay = Calendar.getInstance();
+        Calendar previousCalendarDay = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         previousCalendarDay.setTime(lastDay);
-        previousCalendarDay.setTimeZone(TimeZone.getTimeZone("UTC"));
         previousCalendarDay.add(Calendar.DAY_OF_YEAR, -1);
 
         return previousCalendarDay.getTime();
     }
 
     private Date previousWeek(Date lastDay) {
-        Calendar previousCalendarWeek = Calendar.getInstance();
-        previousCalendarWeek.setTime(lastDay);
+        Calendar previousCalendarWeek = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         previousCalendarWeek.setTimeZone(TimeZone.getTimeZone("UTC"));
         previousCalendarWeek.add(Calendar.DAY_OF_YEAR, -7);
 

@@ -49,9 +49,8 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
     private List<Date> getDaysBetweenInReverse(Date from, Date to) {
         List<Date> daysBetween = new ArrayList<>();
 
-        Calendar fromCalendar = Calendar.getInstance();
+        Calendar fromCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         fromCalendar.setTime(from);
-        fromCalendar.setTimeZone(TimeZone.getTimeZone("UTC"));
 
         Calendar toCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
         toCalendar.setTime(to);

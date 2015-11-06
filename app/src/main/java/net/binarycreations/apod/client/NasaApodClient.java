@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
+import java.util.TimeZone;
 
 /**
  * NASA Astronomy Picture of the Day API client.
@@ -28,7 +29,12 @@ public class NasaApodClient {
     private static final String APOD_API_URL = "https://api.nasa.gov/planetary/apod";
 
     /** Formats a {@link Date} to yyyy-MM-dd as required by the API. */
-    private static final SimpleDateFormat FORMATTER = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+    private static final SimpleDateFormat FORMATTER;
+
+    static {
+        FORMATTER = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        FORMATTER.setTimeZone(TimeZone.getTimeZone("UTC"));
+    }
 
     /** An API key is required for authenitcation. API rate limiting still applies. */
     private final String mApiKey;
