@@ -149,7 +149,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
 
     private Date previousWeek(Date lastDay) {
         Calendar previousCalendarWeek = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        previousCalendarWeek.setTimeZone(TimeZone.getTimeZone("UTC"));
+        previousCalendarWeek.setTime(lastDay);
         previousCalendarWeek.add(Calendar.DAY_OF_YEAR, -7);
 
         return previousCalendarWeek.getTime();
