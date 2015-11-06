@@ -5,16 +5,16 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
 import net.binarycreations.apod.R;
 import net.binarycreations.apod.app.ApodApp;
-import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
 import net.binarycreations.apod.archive.ui.ArchivePaginationListener;
+import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
 import net.binarycreations.apod.detail.AstroDetailActivity;
 import net.binarycreations.apod.domain.AstroItem;
 
@@ -33,43 +33,63 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
 
     private ArchivePresenter mPresenter;
 
+    private Toolbar mToolbar;
     private RecyclerView mAstroList;
     private AstroPictureAdapter mAdapter;
+    private boolean mIsLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_astro_list);
 
+        mToolbar = (Toolbar) findViewById(R.id.archive_toolbar);
+        setSupportActionBar(mToolbar);
+
         mAstroList = (RecyclerView) findViewById(R.id.rv_archive_list);
         mAstroList.setHasFixedSize(true);
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
 
         mAdapter = new AstroPictureAdapter();
+        mAdapter.setHasStableIds(true);
         mAdapter.setOnClickListener(this);
         mAdapter.setPaginationListener(this);
         mAstroList.setAdapter(mAdapter);
 
         mPresenter = ApodApp.getInstance().getArchiveFactory().getArchivePresenter();
         mPresenter.setView(this);
-        mPresenter.loadArchivePictures(fromLastWeek(), toToday());
+
+        loadArchivePictures(fromLastWeek(), toToday());
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.archive_menu, menu);
+        getMenuInflater().inflate(R.menu.archive_menu, menu);
 
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.action_sync) {
-            mPresenter.loadArchivePictures(fromLastWeek(), toToday());
+        if (item.getItemId() == R.id.mi_refresh) {
+            onRefresh();
+            return true;
+        } else {
+            return super.onOptionsItemSelected(item);
         }
+    }
 
-        return super.onOptionsItemSelected(item);
+    private void onRefresh() {
+        // If there is nothing currently being shown and nothing else is being loaded, allow the user to attempt
+        // to refresh loading this weeks current pictures.
+        if (mAdapter.getItemCount() == 0 && !mIsLoading) {
+            loadArchivePictures(fromLastWeek(), toToday());
+        }
+    }
+
+    private synchronized void loadArchivePictures(Date from, Date to) {
+        mIsLoading = true;
+        mPresenter.loadArchivePictures(from, to);
     }
 
     private Date toToday() {
@@ -84,6 +104,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
 
     @Override
     public void displayPictures(List<AstroItem> toShow) {
+        mIsLoading = false;
         mAdapter.appendItems(toShow);
     }
 
@@ -100,7 +121,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     @Override
     public void displayAstroExplanation(AstroItem item) {
         Intent explanationScreen = new Intent(this, AstroDetailActivity.class);
-        explanationScreen.putExtra(AstroDetailActivity.ASTRO_PICK, item);
+        explanationScreen.putExtra(AstroDetailActivity.ASTRO_PICK_EXTRA, item);
         startActivity(explanationScreen);
     }
 

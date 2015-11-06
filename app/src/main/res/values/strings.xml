@@ -2,4 +2,8 @@
     <string name="app_name">Astronomy Picture of the Day</string>
     <string name="no_connectivity">No connectivity available</string>
     <string name="archive_unavailable">Unable to retrieve astronomy picks. Please try again later.</string>
+    <string name="menu_refresh">Refresh</string>
+    <string name="menu_share">Share</string>
+    <string name="share_url">Share url</string>
+    <string name="share_text">Check out out this beautiful astronomy pick called, %1$s s.\n View it for yourself %2$s </string>
 </resources>
