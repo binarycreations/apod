@@ -62,6 +62,7 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
         }
 
         daysBetween.add(fromCalendar.getTime());
+
         return daysBetween;
     }
 }
