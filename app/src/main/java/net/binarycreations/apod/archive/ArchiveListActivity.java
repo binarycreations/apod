@@ -51,7 +51,6 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         mAstroList.setLayoutManager(new LinearLayoutManager(this));
 
         mAdapter = new AstroPictureAdapter();
-        mAdapter.setHasStableIds(true);
         mAdapter.setOnClickListener(this);
         mAdapter.setPaginationListener(this);
         mAstroList.setAdapter(mAdapter);
