@@ -2,7 +2,7 @@ package net.binarycreations.apod.archive;
 
 
 import net.binarycreations.apod.client.ApiError;
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class ArchivePresenterTest {
 
-    private static final AstroItem ITEM = new AstroItem("title", "explantion", "url", AstroItem.MediaType.IMAGE, new
+    private static final AstroPick ITEM = new AstroPick("title", "explantion", "url", AstroPick.MediaType.IMAGE, new
             Date());
 
     @Mock
@@ -68,7 +68,7 @@ public class ArchivePresenterTest {
 
     @Test
     public void onConclusion_shouldDisplayPictures() {
-        List<AstroItem> toDisplay = new ArrayList<>();
+        List<AstroPick> toDisplay = new ArrayList<>();
         toDisplay.add(ITEM);
         sut.onConclusion(toDisplay);
         mockView.displayPictures(toDisplay);

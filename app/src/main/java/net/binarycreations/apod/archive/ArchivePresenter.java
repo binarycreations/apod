@@ -1,6 +1,6 @@
 package net.binarycreations.apod.archive;
 
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 import java.util.Date;
 
@@ -28,5 +28,5 @@ public interface ArchivePresenter {
      *
      * @param item the user has clicked on.
      */
-    void onAstroPictureClick(AstroItem item);
+    void onAstroPictureClick(AstroPick item);
 }

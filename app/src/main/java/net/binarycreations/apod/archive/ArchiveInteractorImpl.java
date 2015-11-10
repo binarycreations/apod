@@ -3,7 +3,7 @@ package net.binarycreations.apod.archive;
 import net.binarycreations.apod.app.background.BackgroundJob;
 import net.binarycreations.apod.app.background.Conclusion;
 import net.binarycreations.apod.app.background.Tasks;
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 import net.binarycreations.apod.client.NasaApodClient;
 
 import java.util.ArrayList;
@@ -29,12 +29,12 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
     }
 
     @Override
-    public void getArchiveItems(final Date from, final Date to, Conclusion<List<AstroItem>> archiveItems) {
-        mTasks.createTask().executeTask(new BackgroundJob<List<AstroItem>>() {
+    public void getArchiveItems(final Date from, final Date to, Conclusion<List<AstroPick>> archiveItems) {
+        mTasks.createTask().executeTask(new BackgroundJob<List<AstroPick>>() {
 
             @Override
-            public List<AstroItem> doInBackground() throws Exception {
-                List<AstroItem> result = new ArrayList<AstroItem>();
+            public List<AstroPick> doInBackground() throws Exception {
+                List<AstroPick> result = new ArrayList<AstroPick>();
 
                 List<Date> daysBetween = getDaysBetweenInReverse(from, to);
                 for(Date day : daysBetween) {

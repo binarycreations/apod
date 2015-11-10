@@ -17,7 +17,7 @@ import net.binarycreations.apod.app.ApodApp;
 import net.binarycreations.apod.archive.ui.ArchivePaginationListener;
 import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
 import net.binarycreations.apod.detail.AstroDetailActivity;
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -109,7 +109,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     }
 
     @Override
-    public void displayPictures(List<AstroItem> toShow) {
+    public void displayPictures(List<AstroPick> toShow) {
         mIsLoading = false;
         mAdapter.appendItems(toShow);
     }
@@ -127,14 +127,14 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
     }
 
     @Override
-    public void displayAstroExplanation(AstroItem item) {
+    public void displayAstroExplanation(AstroPick item) {
         Intent explanationScreen = new Intent(this, AstroDetailActivity.class);
         explanationScreen.putExtra(AstroDetailActivity.ASTRO_PICK_EXTRA, item);
         startActivity(explanationScreen);
     }
 
     @Override
-    public void onNextPagination(AstroItem atEnd) {
+    public void onNextPagination(AstroPick atEnd) {
         Date lastDay = atEnd.getDate();
         loadArchivePictures(previousWeek(lastDay), previousDay(lastDay));
     }
@@ -157,7 +157,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
 
     public void onClick(View v) {
         int position = mAstroList.getChildAdapterPosition(v);
-        AstroItem item = mAdapter.getItem(position);
+        AstroPick item = mAdapter.getItem(position);
         mPresenter.onAstroPictureClick(item);
     }
 }

@@ -4,7 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 import java.util.List;
 
@@ -15,7 +15,7 @@ import java.util.List;
  */
 public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapter.ViewHolder> {
 
-    private List<AstroItem> mApods;
+    private List<AstroPick> mApods;
 
     private ArchivePaginationListener mPaginationListener;
 
@@ -30,10 +30,10 @@ public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapte
 
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        AstroItem item = mApods.get(position);
+        AstroPick item = mApods.get(position);
         holder.mRowView.setTitle(item.getTitle());
 
-        if (AstroItem.MediaType.IMAGE == item.getType()) {
+        if (AstroPick.MediaType.IMAGE == item.getType()) {
             holder.mRowView.showPicture(item.getUrl());
         } else {
             holder.mRowView.showVideo();
@@ -54,11 +54,11 @@ public class AstroPictureAdapter extends RecyclerView.Adapter<AstroPictureAdapte
         return mApods == null ? 0 : mApods.size();
     }
 
-    public AstroItem getItem(int position) {
+    public AstroPick getItem(int position) {
         return mApods.get(position);
     }
 
-    public void appendItems(List<AstroItem> astroItems) {
+    public void appendItems(List<AstroPick> astroItems) {
         if (mApods == null) {
             mApods = astroItems;
             notifyDataSetChanged();

@@ -10,16 +10,16 @@ import java.util.Date;
  *
  * @author graham.
  */
-public class AstroItem implements Parcelable {
+public class AstroPick implements Parcelable {
 
-    public static final Parcelable.Creator<AstroItem> CREATOR = new Parcelable.Creator<AstroItem>() {
+    public static final Parcelable.Creator<AstroPick> CREATOR = new Parcelable.Creator<AstroPick>() {
 
-        public AstroItem createFromParcel(Parcel in) {
-            return new AstroItem(in);
+        public AstroPick createFromParcel(Parcel in) {
+            return new AstroPick(in);
         }
 
-        public AstroItem[] newArray(int size) {
-            return new AstroItem[size];
+        public AstroPick[] newArray(int size) {
+            return new AstroPick[size];
         }
     };
 
@@ -54,7 +54,7 @@ public class AstroItem implements Parcelable {
      * @param type the media type at the given url.
      * @param date the item occurred.
      */
-    public AstroItem(String title, String explanation, String url, MediaType type, Date date) {
+    public AstroPick(String title, String explanation, String url, MediaType type, Date date) {
         mTitle = title;
         mExplanation = explanation;
         mUrl = url;
@@ -67,7 +67,7 @@ public class AstroItem implements Parcelable {
      *
      * @param in containing required data.
      */
-    public AstroItem(Parcel in) {
+    public AstroPick(Parcel in) {
         mTitle = in.readString();
         mExplanation = in.readString();
         mUrl = in.readString();

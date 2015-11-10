@@ -6,7 +6,7 @@ import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;
 import com.squareup.okhttp.Response;
 
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -56,11 +56,11 @@ public class NasaApodClient {
      * Get the the astronomy pick of the day for the given date.
      *
      * @param day to retreive the pick for.
-     * @return a new {@link AstroItem}.
+     * @return a new {@link AstroPick}.
      * @throws IOException when network connectivity issues occur.
      * @throws ApiError when an unexpected response occurs.
      */
-    public AstroItem requestAstronomyPick(Date day) throws IOException, ApiError {
+    public AstroPick requestAstronomyPick(Date day) throws IOException, ApiError {
         Request request = new Request.Builder()
                 .url(APOD_API_URL + "?api_key=" + mApiKey + "&date=" + FORMATTER.format(day)).build();
 
@@ -68,8 +68,8 @@ public class NasaApodClient {
         return parseResponse(response, day);
     }
 
-    private AstroItem parseResponse(Response response, Date day) throws IOException, ApiError {
-        AstroItem result = null;
+    private AstroPick parseResponse(Response response, Date day) throws IOException, ApiError {
+        AstroPick result = null;
 
         if (response.isSuccessful()) {
             try {
@@ -86,12 +86,12 @@ public class NasaApodClient {
         return result;
     }
 
-    private AstroItem fromJson(String responseBody, Date day) throws JSONException {
+    private AstroPick fromJson(String responseBody, Date day) throws JSONException {
         JSONObject responseJson = new JSONObject(responseBody);
         String title = responseJson.getString("title");
         String explanation = responseJson.getString("explanation");
         String url = responseJson.getString("url");
-        AstroItem.MediaType type = AstroItem.MediaType.valueOf(responseJson.getString("media_type").toUpperCase());
-        return new AstroItem(title, explanation, url, type, day);
+        AstroPick.MediaType type = AstroPick.MediaType.valueOf(responseJson.getString("media_type").toUpperCase());
+        return new AstroPick(title, explanation, url, type, day);
     }
 }

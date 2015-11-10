@@ -1,7 +1,7 @@
 package net.binarycreations.apod.archive;
 
 import net.binarycreations.apod.app.background.Conclusion;
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 import java.util.Date;
 import java.util.List;
@@ -13,6 +13,6 @@ import java.util.List;
  */
 public interface ArchiveInteractor {
 
-    void getArchiveItems(Date from, Date to, Conclusion<List<AstroItem>> archiveItems);
+    void getArchiveItems(Date from, Date to, Conclusion<List<AstroPick>> archiveItems);
 
 }
