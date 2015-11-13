@@ -19,10 +19,11 @@ import net.binarycreations.apod.archive.ui.AstroPictureAdapter;
 import net.binarycreations.apod.detail.AstroDetailActivity;
 import net.binarycreations.apod.domain.AstroPick;
 
-import java.util.Calendar;
+import org.threeten.bp.Clock;
+import org.threeten.bp.LocalDate;
+
 import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 /**
  * Show a list of recent astronomy pictures of the day.
@@ -61,7 +62,7 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         mPresenter = ApodApp.getInstance().getArchiveFactory().getArchivePresenter();
         mPresenter.setView(this);
 
-        loadArchivePictures(fromLastWeek(), toToday());
+        loadArchivePictures(fromLastWeek(), today());
     }
 
     @Override
@@ -85,11 +86,11 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         // If there is nothing currently being shown and nothing else is being loaded, allow the user to attempt
         // to refresh loading this weeks current pictures.
         if (mAdapter.getItemCount() == 0 && !mIsLoading) {
-            loadArchivePictures(fromLastWeek(), toToday());
+            loadArchivePictures(fromLastWeek(), today());
         }
     }
 
-    private synchronized void loadArchivePictures(Date from, Date to) {
+    private synchronized void loadArchivePictures(LocalDate from, LocalDate to) {
         if (mIsLoading) {
             Log.d(TAG, "Already loading archive pictures");
         } else {
@@ -98,14 +99,12 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
         }
     }
 
-    private Date toToday() {
-        return Calendar.getInstance(TimeZone.getTimeZone("UTC")).getTime();
+    private LocalDate today() {
+        return LocalDate.now(Clock.systemUTC());
     }
 
-    private Date fromLastWeek() {
-        Calendar calendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        calendar.add(Calendar.DAY_OF_YEAR, -6);
-        return calendar.getTime();
+    private LocalDate fromLastWeek() {
+        return today().minusDays(6);
     }
 
     @Override
@@ -135,24 +134,16 @@ public class ArchiveListActivity extends AppCompatActivity implements ArchiveVie
 
     @Override
     public void onNextPagination(AstroPick atEnd) {
-        Date lastDay = atEnd.getDate();
+        LocalDate lastDay = atEnd.getDate();
         loadArchivePictures(previousWeek(lastDay), previousDay(lastDay));
     }
 
-    private Date previousDay(Date lastDay) {
-        Calendar previousCalendarDay = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        previousCalendarDay.setTime(lastDay);
-        previousCalendarDay.add(Calendar.DAY_OF_YEAR, -1);
-
-        return previousCalendarDay.getTime();
+    private LocalDate previousDay(LocalDate lastDay) {
+        return lastDay.minusDays(1);
     }
 
-    private Date previousWeek(Date lastDay) {
-        Calendar previousCalendarWeek = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        previousCalendarWeek.setTime(lastDay);
-        previousCalendarWeek.add(Calendar.DAY_OF_YEAR, -7);
-
-        return previousCalendarWeek.getTime();
+    private LocalDate previousWeek(LocalDate lastDay) {
+        return lastDay.minusDays(7);
     }
 
     public void onClick(View v) {

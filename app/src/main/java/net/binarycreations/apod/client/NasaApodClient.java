@@ -10,6 +10,7 @@ import net.binarycreations.apod.domain.AstroPick;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.threeten.bp.LocalDate;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -60,7 +61,7 @@ public class NasaApodClient {
      * @throws IOException when network connectivity issues occur.
      * @throws ApiError when an unexpected response occurs.
      */
-    public AstroPick requestAstronomyPick(Date day) throws IOException, ApiError {
+    public AstroPick requestAstronomyPick(LocalDate day) throws IOException, ApiError {
         Request request = new Request.Builder()
                 .url(APOD_API_URL + "?api_key=" + mApiKey + "&date=" + FORMATTER.format(day)).build();
 
@@ -68,7 +69,7 @@ public class NasaApodClient {
         return parseResponse(response, day);
     }
 
-    private AstroPick parseResponse(Response response, Date day) throws IOException, ApiError {
+    private AstroPick parseResponse(Response response, LocalDate day) throws IOException, ApiError {
         AstroPick result = null;
 
         if (response.isSuccessful()) {
@@ -86,7 +87,7 @@ public class NasaApodClient {
         return result;
     }
 
-    private AstroPick fromJson(String responseBody, Date day) throws JSONException {
+    private AstroPick fromJson(String responseBody, LocalDate day) throws JSONException {
         JSONObject responseJson = new JSONObject(responseBody);
         String title = responseJson.getString("title");
         String explanation = responseJson.getString("explanation");

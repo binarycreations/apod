@@ -4,6 +4,8 @@ import net.binarycreations.apod.app.background.Conclusion;
 import net.binarycreations.apod.client.ApiError;
 import net.binarycreations.apod.domain.AstroPick;
 
+import org.threeten.bp.LocalDate;
+
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +25,7 @@ class ArchivePresenterImpl implements ArchivePresenter, Conclusion<List<AstroPic
     }
 
     @Override
-    public void loadArchivePictures(Date from, Date to) {
+    public void loadArchivePictures(LocalDate from, LocalDate to) {
         mInteractor.getArchiveItems(from, to, this);
     }
 

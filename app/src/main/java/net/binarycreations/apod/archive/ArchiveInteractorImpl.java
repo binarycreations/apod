@@ -3,14 +3,16 @@ package net.binarycreations.apod.archive;
 import net.binarycreations.apod.app.background.BackgroundJob;
 import net.binarycreations.apod.app.background.Conclusion;
 import net.binarycreations.apod.app.background.Tasks;
-import net.binarycreations.apod.domain.AstroPick;
 import net.binarycreations.apod.client.NasaApodClient;
+import net.binarycreations.apod.domain.AstroPick;
+import net.binarycreations.apod.domain.dao.AstroPickDao;
+
+import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneOffset;
+import org.threeten.bp.ZonedDateTime;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
-import java.util.TimeZone;
 
 /**
  * Provides functionality for searching and retrieving astronomy pictures from the NASA archive.
@@ -23,21 +25,24 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
 
     private final Tasks mTasks;
 
-    ArchiveInteractorImpl(Tasks tasks, NasaApodClient client) {
+    private final AstroPickDao mPickDao;
+
+    ArchiveInteractorImpl(Tasks tasks, NasaApodClient client, AstroPickDao pickDao) {
         mTasks = tasks;
         mClient = client;
+        mPickDao = pickDao;
     }
 
     @Override
-    public void getArchiveItems(final Date from, final Date to, Conclusion<List<AstroPick>> archiveItems) {
+    public void getArchiveItems(final LocalDate from, final LocalDate to, Conclusion<List<AstroPick>> archiveItems) {
         mTasks.createTask().executeTask(new BackgroundJob<List<AstroPick>>() {
 
             @Override
             public List<AstroPick> doInBackground() throws Exception {
-                List<AstroPick> result = new ArrayList<AstroPick>();
+                List<AstroPick> result = new ArrayList<>();
 
-                List<Date> daysBetween = getDaysBetweenInReverse(from, to);
-                for(Date day : daysBetween) {
+                List<LocalDate> daysBetween = getDaysBetweenInReverse(from, to);
+                for(LocalDate day : daysBetween) {
                     result.add(mClient.requestAstronomyPick(day));
                 }
 
@@ -46,21 +51,18 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
         }, archiveItems);
     }
 
-    private List<Date> getDaysBetweenInReverse(Date from, Date to) {
-        List<Date> daysBetween = new ArrayList<>();
+    private List<LocalDate> getDaysBetweenInReverse(LocalDate from, LocalDate to) {
+        List<LocalDate> daysBetween = new ArrayList<>();
 
-        Calendar fromCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        fromCalendar.setTime(from);
+        ZonedDateTime fromInUtc = from.atStartOfDay(ZoneOffset.UTC);
+        ZonedDateTime toInUtc = to.atStartOfDay(ZoneOffset.UTC);
 
-        Calendar toCalendar = Calendar.getInstance(TimeZone.getTimeZone("UTC"));
-        toCalendar.setTime(to);
-
-        while(toCalendar.after(fromCalendar)) {
-            daysBetween.add(toCalendar.getTime());
-            toCalendar.add(Calendar.DAY_OF_YEAR, -1);
+        while(toInUtc.isAfter(fromInUtc)) {
+            daysBetween.add(toInUtc.toLocalDate());
+            toInUtc.minusDays(1);
         }
 
-        daysBetween.add(fromCalendar.getTime());
+        daysBetween.add(fromInUtc.toLocalDate());
 
         return daysBetween;
     }

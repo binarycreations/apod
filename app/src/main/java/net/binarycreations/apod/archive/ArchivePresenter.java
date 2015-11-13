@@ -2,7 +2,7 @@ package net.binarycreations.apod.archive;
 
 import net.binarycreations.apod.domain.AstroPick;
 
-import java.util.Date;
+import org.threeten.bp.LocalDate;
 
 /**
  * Handles user interactions whilst browsing the archive.
@@ -21,7 +21,7 @@ public interface ArchivePresenter {
     /**
      * Load astronomy pictures.
      */
-    void loadArchivePictures(Date from, Date to);
+    void loadArchivePictures(LocalDate from, LocalDate to);
 
     /**
      * Handle the selection of an astrology picture.

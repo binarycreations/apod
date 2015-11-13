@@ -3,7 +3,7 @@ package net.binarycreations.apod.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
+import org.threeten.bp.LocalDate;
 
 /**
  * Represents a daily astronomy picture with associated explanation.
@@ -34,7 +34,7 @@ public class AstroPick implements Parcelable {
         dest.writeString(mExplanation);
         dest.writeString(mUrl);
         dest.writeString(mType.toString());
-        dest.writeLong(mDate.getTime());
+        dest.writeLong(mDate.toEpochDay());
     }
 
     public enum MediaType { IMAGE, VIDEO }
@@ -43,7 +43,7 @@ public class AstroPick implements Parcelable {
     private String mExplanation;
     private String mUrl;
     private MediaType mType;
-    private Date mDate;
+    private LocalDate mDate;
 
     /**
      * Constructor.
@@ -54,7 +54,7 @@ public class AstroPick implements Parcelable {
      * @param type the media type at the given url.
      * @param date the item occurred.
      */
-    public AstroPick(String title, String explanation, String url, MediaType type, Date date) {
+    public AstroPick(String title, String explanation, String url, MediaType type, LocalDate date) {
         mTitle = title;
         mExplanation = explanation;
         mUrl = url;
@@ -72,7 +72,7 @@ public class AstroPick implements Parcelable {
         mExplanation = in.readString();
         mUrl = in.readString();
         mType = MediaType.valueOf(in.readString());
-        mDate = new Date(in.readLong());
+        mDate = LocalDate.ofEpochDay(in.readLong());
     }
 
     public String getTitle() {
@@ -91,7 +91,7 @@ public class AstroPick implements Parcelable {
         return mUrl;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return mDate;
     }
 
