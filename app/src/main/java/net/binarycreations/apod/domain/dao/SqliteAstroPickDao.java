@@ -12,6 +12,7 @@ import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import static net.binarycreations.apod.domain.AstroPick.MediaType;
 import static net.binarycreations.apod.domain.dao.ApodContract.Picks;
@@ -22,6 +23,8 @@ import static net.binarycreations.apod.domain.dao.ApodContract.Picks;
  * @author graham.
  */
 public class SqliteAstroPickDao implements AstroPickDao {
+
+    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-d", Locale.US);
 
     private final ApodDatabaseHelper mDatabaseHelper;
 
@@ -37,7 +40,7 @@ public class SqliteAstroPickDao implements AstroPickDao {
         values.put(Picks.EXPLANATION, pick.getExplanation());
         values.put(Picks.MEDIA_TYPE, pick.getType().toString());
         values.put(Picks.URL, pick.getUrl());
-        values.put(Picks.DATE, pick.getDate().format(DateTimeFormatter.ISO_DATE));
+        values.put(Picks.DATE, pick.getDate().format(DATE_TIME_FORMATTER));
 
         SQLiteDatabase database = mDatabaseHelper.getWritableDatabase();
         return database.insert(Picks.TABLE_NAME, null, values);
@@ -45,17 +48,23 @@ public class SqliteAstroPickDao implements AstroPickDao {
 
     @Override
     public List<AstroPick> findAllBetweenDates(LocalDate from, LocalDate to) {
+        if (from.isAfter(to)) {
+            throw new IllegalArgumentException("From date must be before to date");
+        }
+
         List<AstroPick> result = new ArrayList<>();
 
-        String fromInUtc = from.atStartOfDay(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT);
+        String fromInUtc = from.atStartOfDay(ZoneOffset.UTC).format(DATE_TIME_FORMATTER);
+        String toInUtc = to.atStartOfDay(ZoneOffset.UTC).format(DATE_TIME_FORMATTER);
 
         SQLiteDatabase database = mDatabaseHelper.getWritableDatabase();
-        Cursor cursor = database.query(Picks.TABLE_NAME, null, "SELECT * FROM " + Picks.TABLE_NAME + " WHERE " +
-                Picks.DATE + " >= ? ", new String[] { fromInUtc }, null, null, null);
+        Cursor cursor = database.query(Picks.TABLE_NAME, null, Picks.DATE + " >= ? AND " + Picks.DATE + " <= ?",
+                new String[] { fromInUtc, toInUtc }, null, null, null);
 
-        cursor.moveToFirst();
-        while (cursor.moveToNext()) {
-            result.add(from(cursor));
+        if (cursor.moveToFirst()) {
+            do {
+                result.add(from(cursor));
+            } while (cursor.moveToNext());
         }
 
         return result;
@@ -68,6 +77,6 @@ public class SqliteAstroPickDao implements AstroPickDao {
         String mediaType = cursor.getString(cursor.getColumnIndex(Picks.MEDIA_TYPE));
         String url = cursor.getString(cursor.getColumnIndex(Picks.URL));
 
-        return new AstroPick(title, explanation, url, MediaType.valueOf(mediaType), LocalDate.now());
+        return new AstroPick(title, explanation, url, MediaType.valueOf(mediaType), LocalDate.parse(date));
     }
 }
