@@ -7,14 +7,12 @@ import android.database.sqlite.SQLiteDatabase;
 import net.binarycreations.apod.domain.AstroPick;
 
 import org.threeten.bp.LocalDate;
-import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZoneOffset;
 import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 import static net.binarycreations.apod.domain.AstroPick.MediaType;
 import static net.binarycreations.apod.domain.dao.ApodContract.Picks;

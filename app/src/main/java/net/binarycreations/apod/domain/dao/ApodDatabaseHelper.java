@@ -1,11 +1,11 @@
 package net.binarycreations.apod.domain.dao;
 
-import static net.binarycreations.apod.domain.dao.ApodContract.*;
-
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+
+import static net.binarycreations.apod.domain.dao.ApodContract.Picks;
 
 /**
  * Stores all astronomy pick of the day data offline.
