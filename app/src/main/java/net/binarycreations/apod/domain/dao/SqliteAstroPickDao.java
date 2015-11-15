@@ -7,7 +7,9 @@ import android.database.sqlite.SQLiteDatabase;
 import net.binarycreations.apod.domain.AstroPick;
 
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneId;
 import org.threeten.bp.ZoneOffset;
+import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.ArrayList;
@@ -24,8 +26,6 @@ import static net.binarycreations.apod.domain.dao.ApodContract.Picks;
  */
 public class SqliteAstroPickDao implements AstroPickDao {
 
-    public static final DateTimeFormatter DATE_TIME_FORMATTER = DateTimeFormatter.ofPattern("yyyy-MM-d", Locale.US);
-
     private final ApodDatabaseHelper mDatabaseHelper;
 
     public SqliteAstroPickDao(ApodDatabaseHelper databaseHelper) {
@@ -40,7 +40,7 @@ public class SqliteAstroPickDao implements AstroPickDao {
         values.put(Picks.EXPLANATION, pick.getExplanation());
         values.put(Picks.MEDIA_TYPE, pick.getType().toString());
         values.put(Picks.URL, pick.getUrl());
-        values.put(Picks.DATE, pick.getDate().format(DATE_TIME_FORMATTER));
+        values.put(Picks.DATE, pick.getDate().atStartOfDay(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT));
 
         SQLiteDatabase database = mDatabaseHelper.getWritableDatabase();
         return database.insert(Picks.TABLE_NAME, null, values);
@@ -54,8 +54,8 @@ public class SqliteAstroPickDao implements AstroPickDao {
 
         List<AstroPick> result = new ArrayList<>();
 
-        String fromInUtc = from.atStartOfDay(ZoneOffset.UTC).format(DATE_TIME_FORMATTER);
-        String toInUtc = to.atStartOfDay(ZoneOffset.UTC).format(DATE_TIME_FORMATTER);
+        String fromInUtc = from.atStartOfDay(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT);
+        String toInUtc = to.atStartOfDay(ZoneOffset.UTC).format(DateTimeFormatter.ISO_INSTANT);
 
         SQLiteDatabase database = mDatabaseHelper.getWritableDatabase();
         Cursor cursor = database.query(Picks.TABLE_NAME, null, Picks.DATE + " >= ? AND " + Picks.DATE + " <= ?",
@@ -77,6 +77,7 @@ public class SqliteAstroPickDao implements AstroPickDao {
         String mediaType = cursor.getString(cursor.getColumnIndex(Picks.MEDIA_TYPE));
         String url = cursor.getString(cursor.getColumnIndex(Picks.URL));
 
-        return new AstroPick(title, explanation, url, MediaType.valueOf(mediaType), LocalDate.parse(date));
+        return new AstroPick(title, explanation, url, MediaType.valueOf(mediaType), ZonedDateTime.parse(date)
+                .toLocalDate());
     }
 }

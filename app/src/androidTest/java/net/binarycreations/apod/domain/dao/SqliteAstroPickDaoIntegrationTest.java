@@ -13,6 +13,9 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneOffset;
+import org.threeten.bp.ZonedDateTime;
+import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.List;
 
@@ -60,6 +63,22 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
         long rowId = sut.insert(pick);
         assertEquals(1, rowId);
         assertAstroPickAtRow(pick, rowId);
+    }
+
+    @Test
+    public void insert_shouldRecordDateInIso8601UtcTimestamp() {
+        AstroPick pick = fromDate(DATE_24_10_15);
+
+        long rowId = sut.insert(pick);
+        assertEquals(1, rowId);
+        assertAstroPickDate(DATE_24_10_15.atStartOfDay(ZoneOffset.UTC), rowId);
+
+    }
+
+    @Test
+    public void insert_shouldReturnMinusOneWhenInsertFails() {
+        // This should fail because the null fields will break non-null schema constraints.
+        assertEquals(-1, sut.insert(new AstroPick(null, null, null, AstroPick.MediaType.IMAGE, DATE_24_10_15)));
     }
 
     @Test
@@ -145,7 +164,6 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
         assertTrue(actual.isEmpty());
     }
 
-
     @Test(expected = IllegalArgumentException.class)
     public void findAllBetweenDates_shouldThrowExceptionGivenFromIsAfterToDate() {
         sut.findAllBetweenDates(DATE_14_11_15, DATE_13_11_15);
@@ -180,7 +198,25 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
             assertEquals(expected.getExplanation(), explanation);
             assertEquals(expected.getUrl(), url);
             assertEquals(expected.getType(), AstroPick.MediaType.valueOf(mediaType));
-            assertEquals(expected.getDate(), LocalDate.parse(date));
+            assertEquals(expected.getDate(), ZonedDateTime.parse(date).toLocalDate());
+        } finally {
+            if (cursor != null && cursor.isClosed()) {
+                cursor.close();
+            }
+        }
+    }
+
+    private void assertAstroPickDate(ZonedDateTime zonedDateTime, long rowId) {
+        Cursor cursor = null;
+
+        try {
+            cursor = databaseHelper.getWritableDatabase().query(ApodContract.Picks.TABLE_NAME, null, ApodContract
+                    .Picks._ID + " = ?", new String[] { String.valueOf(rowId) }, null, null, null);
+            cursor.moveToFirst();
+
+            String date = cursor.getString(cursor.getColumnIndex(ApodContract.Picks.DATE));
+
+            assertEquals(zonedDateTime.format(DateTimeFormatter.ISO_INSTANT), date);
         } finally {
             if (cursor != null && cursor.isClosed()) {
                 cursor.close();
@@ -193,7 +229,7 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
         assertEquals(expected.getExplanation(), actual.getExplanation());
         assertEquals(expected.getUrl(), actual.getUrl());
         assertEquals(expected.getType(), actual.getType());
-        assertEquals(expected.getDate(), actual.getDate()  );
+        assertEquals(expected.getDate(), actual.getDate());
     }
 
     private AstroPick fromDate(LocalDate date) {
