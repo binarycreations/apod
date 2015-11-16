@@ -1,6 +1,7 @@
 package net.binarycreations.apod.domain.dao;
 
 import android.database.Cursor;
+import android.os.StrictMode;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.AndroidTestCase;
 import android.test.suitebuilder.annotation.SmallTest;
@@ -9,7 +10,9 @@ import net.binarycreations.apod.app.ApodApp;
 import net.binarycreations.apod.domain.AstroPick;
 
 import org.junit.After;
+import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.threeten.bp.LocalDate;
@@ -37,9 +40,30 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
     private static final LocalDate DATE_17_11_15 = LocalDate.parse("2015-11-17");
     private static final LocalDate DATE_24_10_15 = LocalDate.parse("2015-10-24");
 
+    private static StrictMode.VmPolicy priorVmPolicy;
+
     private ApodDatabaseHelper databaseHelper;
 
     private SqliteAstroPickDao sut;
+
+    @BeforeClass
+    public static void startMonitoringSqliteInteractions() {
+        priorVmPolicy = StrictMode.getVmPolicy();
+
+        // Kill everything if anything made occurs whilst interacting with the database.
+        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+                .detectLeakedSqlLiteObjects()
+                .detectLeakedClosableObjects()
+                .detectActivityLeaks()
+                .penaltyLog()
+                .penaltyDeath()
+                .build());
+    }
+
+    @AfterClass
+    public static void stopMonitoringSqliteInteractions() {
+        StrictMode.setVmPolicy(priorVmPolicy);
+    }
 
     @Before
     public void setUp() throws Exception {
