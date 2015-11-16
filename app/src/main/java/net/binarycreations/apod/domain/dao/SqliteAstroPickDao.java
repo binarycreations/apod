@@ -3,6 +3,7 @@ package net.binarycreations.apod.domain.dao;
 import android.content.ContentValues;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.database.sqlite.SQLiteOpenHelper;
 
 import net.binarycreations.apod.domain.AstroPick;
 
@@ -24,9 +25,9 @@ import static net.binarycreations.apod.domain.dao.ApodContract.Picks;
  */
 public class SqliteAstroPickDao implements AstroPickDao {
 
-    private final ApodDatabaseHelper mDatabaseHelper;
+    private final SQLiteOpenHelper mDatabaseHelper;
 
-    public SqliteAstroPickDao(ApodDatabaseHelper databaseHelper) {
+    public SqliteAstroPickDao(SQLiteOpenHelper databaseHelper) {
         mDatabaseHelper = databaseHelper;
     }
 
@@ -64,6 +65,8 @@ public class SqliteAstroPickDao implements AstroPickDao {
                 result.add(from(cursor));
             } while (cursor.moveToNext());
         }
+
+        cursor.close();
 
         return result;
     }

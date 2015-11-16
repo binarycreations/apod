@@ -18,6 +18,7 @@ import org.threeten.bp.ZonedDateTime;
 import org.threeten.bp.format.DateTimeFormatter;
 
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Integration tests for {@link SqliteAstroPickDao}.
@@ -34,7 +35,6 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
     private static final LocalDate DATE_14_11_15 = LocalDate.parse("2015-11-14");
     private static final LocalDate DATE_16_11_15 = LocalDate.parse("2015-11-16");
     private static final LocalDate DATE_17_11_15 = LocalDate.parse("2015-11-17");
-    private static final LocalDate DATE_25_10_15 = LocalDate.parse("2015-10-25");
     private static final LocalDate DATE_24_10_15 = LocalDate.parse("2015-10-24");
 
     private ApodDatabaseHelper databaseHelper;
@@ -57,7 +57,7 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
     }
 
     @Test
-    public void testInsert_shouldAddRecordToDatabase() {
+    public void insert_shouldAddRecordToDatabase() {
         AstroPick pick = fromDate(DATE_24_10_15);
 
         long rowId = sut.insert(pick);
@@ -72,7 +72,6 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
         long rowId = sut.insert(pick);
         assertEquals(1, rowId);
         assertAstroPickDate(DATE_24_10_15.atStartOfDay(ZoneOffset.UTC), rowId);
-
     }
 
     @Test
@@ -124,7 +123,7 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
 
         List<AstroPick> actual = sut.findAllBetweenDates(DATE_10_11_15, DATE_16_11_15);
 
-        assertFalse(actual.isEmpty());
+        assertEquals(2, actual.size());
         assertAstroPickEquals(expectedFirst, actual.get(0));
         assertAstroPickEquals(expectedSecond , actual.get(1));
     }
@@ -139,9 +138,9 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
 
         List<AstroPick> actual = sut.findAllBetweenDates(DATE_10_11_15, DATE_16_11_15);
 
-        assertFalse(actual.isEmpty());
+        assertEquals(2, actual.size());
         assertAstroPickEquals(expectedFirst, actual.get(0));
-        assertAstroPickEquals(expectedSecond , actual.get(1));
+        assertAstroPickEquals(expectedSecond, actual.get(1));
     }
 
     @Test
@@ -176,7 +175,7 @@ public class SqliteAstroPickDaoIntegrationTest extends AndroidTestCase {
 
         List<AstroPick> actual = sut.findAllBetweenDates(DATE_10_11_15, DATE_10_11_15);
 
-        assertFalse(actual.isEmpty());
+        assertEquals(1, actual.size());
         assertAstroPickEquals(expected, actual.get(0));
     }
 
