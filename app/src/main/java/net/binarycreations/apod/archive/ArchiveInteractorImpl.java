@@ -59,7 +59,7 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
 
         while(toInUtc.isAfter(fromInUtc)) {
             daysBetween.add(toInUtc.toLocalDate());
-            toInUtc.minusDays(1);
+            toInUtc = toInUtc.minusDays(1);
         }
 
         daysBetween.add(fromInUtc.toLocalDate());

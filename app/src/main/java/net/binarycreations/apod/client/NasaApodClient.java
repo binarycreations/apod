@@ -11,6 +11,8 @@ import net.binarycreations.apod.domain.AstroPick;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.threeten.bp.LocalDate;
+import org.threeten.bp.ZoneOffset;
+import org.threeten.bp.ZonedDateTime;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -62,8 +64,9 @@ public class NasaApodClient {
      * @throws ApiError when an unexpected response occurs.
      */
     public AstroPick requestAstronomyPick(LocalDate day) throws IOException, ApiError {
+
         Request request = new Request.Builder()
-                .url(APOD_API_URL + "?api_key=" + mApiKey + "&date=" + FORMATTER.format(day)).build();
+                .url(APOD_API_URL + "?api_key=" + mApiKey + "&date=" + day.toString()).build();
 
         Response response = mClient.newCall(request).execute();
         return parseResponse(response, day);
