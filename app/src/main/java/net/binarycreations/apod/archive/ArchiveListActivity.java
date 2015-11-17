@@ -22,7 +22,6 @@ import net.binarycreations.apod.domain.AstroPick;
 import org.threeten.bp.Clock;
 import org.threeten.bp.LocalDate;
 
-import java.util.Date;
 import java.util.List;
 
 /**

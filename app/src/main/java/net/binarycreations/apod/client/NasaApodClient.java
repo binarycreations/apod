@@ -11,8 +11,6 @@ import net.binarycreations.apod.domain.AstroPick;
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.threeten.bp.LocalDate;
-import org.threeten.bp.ZoneOffset;
-import org.threeten.bp.ZonedDateTime;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;

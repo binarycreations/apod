@@ -6,7 +6,6 @@ import net.binarycreations.apod.domain.AstroPick;
 
 import org.threeten.bp.LocalDate;
 
-import java.util.Date;
 import java.util.List;
 
 class ArchivePresenterImpl implements ArchivePresenter, Conclusion<List<AstroPick>> {
