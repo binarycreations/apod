@@ -1,10 +1,10 @@
 package net.binarycreations.apod.domain.dao;
 
+import android.support.annotation.NonNull;
+
 import net.binarycreations.apod.domain.AstroPick;
 
 import org.threeten.bp.LocalDate;
-
-import java.util.List;
 
 /**
  * Data access object for astronomy picks.
@@ -19,15 +19,13 @@ public interface AstroPickDao {
      * @param pick to save.
      * @return identifier to stored pick.
      */
-    long insert(AstroPick pick);
+    long insert(@NonNull AstroPick pick);
 
     /**
-     * Find all picks between two dates.
+     * Find pick for a give day.
      *
-     * @param from to search from
-     * @param to to search till
-     * @return a list of found dates ordered by most recent first.
+     * @param date to search for.
+     * @return the AstroPick for the date or null if it is not present.
      */
-    List<AstroPick> findAllBetweenDates(LocalDate from, LocalDate to);
-
+    AstroPick findPick(@NonNull LocalDate date);
 }

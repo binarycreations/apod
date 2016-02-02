@@ -43,7 +43,12 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
 
                 List<LocalDate> daysBetween = getDaysBetweenInReverse(from, to);
                 for(LocalDate day : daysBetween) {
-                    result.add(mClient.requestAstronomyPick(day));
+                    AstroPick pick = mPickDao.findPick(day);
+                    if (pick == null) {
+                        pick = mClient.requestAstronomyPick(day);
+                        mPickDao.insert(pick);
+                    }
+                    result.add(pick);
                 }
 
                 return result;
@@ -51,6 +56,14 @@ public class ArchiveInteractorImpl implements ArchiveInteractor {
         }, archiveItems);
     }
 
+    /**
+     * Get the date for each day between two points in reverse order.
+     * <p/>
+     *
+     * @param from the start date for the sequence
+     * @param to the end date of the sequence
+     * @return a new List containing the date for each day, starting with the most recent date.
+     */
     private List<LocalDate> getDaysBetweenInReverse(LocalDate from, LocalDate to) {
         List<LocalDate> daysBetween = new ArrayList<>();
 
