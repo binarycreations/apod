@@ -2,12 +2,13 @@ package net.binarycreations.apod.archive;
 
 import net.binarycreations.apod.app.background.Conclusion;
 import net.binarycreations.apod.client.ApiError;
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
-import java.util.Date;
+import org.threeten.bp.LocalDate;
+
 import java.util.List;
 
-class ArchivePresenterImpl implements ArchivePresenter, Conclusion<List<AstroItem>> {
+class ArchivePresenterImpl implements ArchivePresenter, Conclusion<List<AstroPick>> {
 
     private final ArchiveInteractor mInteractor;
 
@@ -23,12 +24,12 @@ class ArchivePresenterImpl implements ArchivePresenter, Conclusion<List<AstroIte
     }
 
     @Override
-    public void loadArchivePictures(Date from, Date to) {
+    public void loadArchivePictures(LocalDate from, LocalDate to) {
         mInteractor.getArchiveItems(from, to, this);
     }
 
     @Override
-    public void onAstroPictureClick(AstroItem item) {
+    public void onAstroPictureClick(AstroPick item) {
         mView.displayAstroExplanation(item);
     }
 
@@ -42,7 +43,7 @@ class ArchivePresenterImpl implements ArchivePresenter, Conclusion<List<AstroIte
     }
 
     @Override
-    public void onConclusion(List<AstroItem> result) {
+    public void onConclusion(List<AstroPick> result) {
         mView.displayPictures(result);
     }
 }

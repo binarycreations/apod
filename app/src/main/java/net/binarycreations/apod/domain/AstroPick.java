@@ -3,23 +3,23 @@ package net.binarycreations.apod.domain;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.util.Date;
+import org.threeten.bp.LocalDate;
 
 /**
  * Represents a daily astronomy picture with associated explanation.
  *
  * @author graham.
  */
-public class AstroItem implements Parcelable {
+public class AstroPick implements Parcelable {
 
-    public static final Parcelable.Creator<AstroItem> CREATOR = new Parcelable.Creator<AstroItem>() {
+    public static final Parcelable.Creator<AstroPick> CREATOR = new Parcelable.Creator<AstroPick>() {
 
-        public AstroItem createFromParcel(Parcel in) {
-            return new AstroItem(in);
+        public AstroPick createFromParcel(Parcel in) {
+            return new AstroPick(in);
         }
 
-        public AstroItem[] newArray(int size) {
-            return new AstroItem[size];
+        public AstroPick[] newArray(int size) {
+            return new AstroPick[size];
         }
     };
 
@@ -34,7 +34,7 @@ public class AstroItem implements Parcelable {
         dest.writeString(mExplanation);
         dest.writeString(mUrl);
         dest.writeString(mType.toString());
-        dest.writeLong(mDate.getTime());
+        dest.writeLong(mDate.toEpochDay());
     }
 
     public enum MediaType { IMAGE, VIDEO }
@@ -43,7 +43,7 @@ public class AstroItem implements Parcelable {
     private String mExplanation;
     private String mUrl;
     private MediaType mType;
-    private Date mDate;
+    private LocalDate mDate;
 
     /**
      * Constructor.
@@ -54,7 +54,7 @@ public class AstroItem implements Parcelable {
      * @param type the media type at the given url.
      * @param date the item occurred.
      */
-    public AstroItem(String title, String explanation, String url, MediaType type, Date date) {
+    public AstroPick(String title, String explanation, String url, MediaType type, LocalDate date) {
         mTitle = title;
         mExplanation = explanation;
         mUrl = url;
@@ -67,12 +67,12 @@ public class AstroItem implements Parcelable {
      *
      * @param in containing required data.
      */
-    public AstroItem(Parcel in) {
+    public AstroPick(Parcel in) {
         mTitle = in.readString();
         mExplanation = in.readString();
         mUrl = in.readString();
         mType = MediaType.valueOf(in.readString());
-        mDate = new Date(in.readLong());
+        mDate = LocalDate.ofEpochDay(in.readLong());
     }
 
     public String getTitle() {
@@ -91,7 +91,7 @@ public class AstroItem implements Parcelable {
         return mUrl;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return mDate;
     }
 

@@ -2,7 +2,6 @@ package net.binarycreations.apod.detail;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.ShareActionProvider;
@@ -16,7 +15,7 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import net.binarycreations.apod.R;
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 /**
  * Shows a single daily astronomical picture with an explanation.
@@ -27,7 +26,7 @@ public class AstroDetailActivity extends AppCompatActivity {
 
     public static final String ASTRO_PICK_EXTRA = "astro_pick";
 
-    private AstroItem mItem;
+    private AstroPick mItem;
 
     private Toolbar mToolbar;
     private TextView mTitle;
@@ -55,7 +54,7 @@ public class AstroDetailActivity extends AppCompatActivity {
         mTitle.setText(mItem.getTitle());
         mExplanation.setText(mItem.getExplanation());
 
-        if (AstroItem.MediaType.IMAGE == mItem.getType()) {
+        if (AstroPick.MediaType.IMAGE == mItem.getType()) {
             Picasso.with(this).load(mItem.getUrl()).into(mDetailPicture);
         } else {
             mDetailPicture.setVisibility(View.GONE);

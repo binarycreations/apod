@@ -1,6 +1,6 @@
 package net.binarycreations.apod.archive;
 
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 import java.util.List;
 
@@ -11,11 +11,11 @@ import java.util.List;
  */
 interface ArchiveView {
 
-    void displayPictures(List<AstroItem> toShow);
+    void displayPictures(List<AstroPick> toShow);
 
     void displayNoConnectivity();
 
     void displayArchiveUnavailable();
 
-    void displayAstroExplanation(AstroItem item);
+    void displayAstroExplanation(AstroPick item);
 }

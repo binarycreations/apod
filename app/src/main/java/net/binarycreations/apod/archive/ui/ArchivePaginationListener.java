@@ -1,6 +1,6 @@
 package net.binarycreations.apod.archive.ui;
 
-import net.binarycreations.apod.domain.AstroItem;
+import net.binarycreations.apod.domain.AstroPick;
 
 /**
  *
@@ -9,6 +9,6 @@ import net.binarycreations.apod.domain.AstroItem;
  */
 public interface ArchivePaginationListener {
 
-    void onNextPagination(AstroItem atEnd);
+    void onNextPagination(AstroPick atEnd);
 
 }

@@ -3,6 +3,7 @@ package net.binarycreations.apod.app;
 import android.app.Application;
 import android.util.Log;
 
+import com.jakewharton.threetenabp.AndroidThreeTen;
 import com.squareup.okhttp.OkHttpClient;
 
 import net.binarycreations.apod.BuildConfig;
@@ -32,6 +33,9 @@ public class ApodApp extends Application {
         super.onCreate();
         Log.d(TAG, "onCreate");
 
+        // Required to init three ten timezone information from Android assets
+        AndroidThreeTen.init(this);
+
         // Create graph of dependencies required by the application.
         mTasks = new Tasks();
         mApodClient = new NasaApodClient(new OkHttpClient(), BuildConfig.API_KEY);
@@ -44,7 +48,7 @@ public class ApodApp extends Application {
         return sInstance;
     }
 
-    public synchronized ArchiveFactory getArchiveFactory() {
+    public ArchiveFactory getArchiveFactory() {
         return mArchiveFactory;
     }
 }
