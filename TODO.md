@@ -5,7 +5,7 @@
 ### Version 1.0
 - As a developer I want crash reporting analytics so that I can fix problems easily
 - As a user I want to swipe to refresh the list of APODs so that I can and view the latest picks.
-- As a user I want to be able to view APODs whilst offline
+- As a user I want to be able to view APODs whilst offline **DONE**
 - As a user I want to view the APOD picture fullscreen
 - As a user I want to play a video associated with an APOD
 - As a user I want to favourite an APOD so that I can view it at a later date
@@ -24,11 +24,15 @@
 - As a user I want to choose which storage area to download APODs too
 
 ## TODOs
+#### In top priority order
+- Start automated testing with Espresso, using [mockwebserver](https://github.com/square/okhttp/tree/master/mockwebserver) to isolate external API.
+- Investigate using Cucumber with Espresso to have some form of BDD.
+    - It would be even cooler to use [RetroLamda](https://github.com/evant/gradle-retrolambda) so it is possible to use Cucumber Lamda rather than annotations.
+- Use genymotion to start emulators prior to automated tests running
 - Move dependency injection to use Dagger.
 - Move away from Tasks API to RxJava for completing background work.
-- Use Joda-time or the three-ten backport for Android. The Calendar and Date API is messy.
-- Use genymotion to start emulators prior to automated tests running
-- Start automated testing with Espresso, using [mockwebserver](https://github.com/square/okhttp/tree/master/mockwebserver) to isolate.
-- Investigate using Gwen with Espresso to have some form of BDD.
 - Use git tags to generate the version information within the Android manifest
 - Create a Jenkins server to run a CI job
+
+**DONE**
+- ~~Use Joda-time or the three-ten backport for Android. The Calendar and Date API is messy.~~
